@@ -13,5 +13,9 @@ namespace Chess.Core {
         public Vector3Int GetGridPos() {
             return gridPos;
         }
+
+        public void AddIOnTile(IOnTile onTile) {
+            this.onTile = onTile;
+        }
     }
 }

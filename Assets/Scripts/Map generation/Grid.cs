@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 //using System;
 
 namespace Chess.Core {
-    public class Grid : MonoBehaviour {
+    public class Grid : Singleton<Grid> {
        // System.Random randomGenerator = new System.Random();
         [Min(1)]
         [SerializeField] Vector3Int gridSize ;
@@ -15,6 +15,8 @@ namespace Chess.Core {
         [SerializeField] Material selectColor;
         [SerializeField] Transform parentPrefab; //parent container for the tiles in the grid
         [SerializeField] Material[] colorCycle;
+        [SerializeField] Unit unit;
+        [SerializeField] Transform unitParent;
         [SerializeField][Range(0, 1)] float obstacleDensity;
         [SerializeField] int areaWithoutObstacles;//width on each side without obstacle spawn
         [Min(0.001f)]
@@ -29,7 +31,6 @@ namespace Chess.Core {
             task.Wait();
 
             GenerateObstacles(task.Result);
-
         }
 
         [Button("Create Grid")]
@@ -81,6 +82,10 @@ namespace Chess.Core {
             return tileGrid[pos.x, pos.y, pos.z];
         }
 
+        public Vector3Int GetGridSize() {
+            return new Vector3Int(tileGrid.GetLength(0), tileGrid.GetLength(1), tileGrid.GetLength(2));
+        }
+
         private void SetGridPointers() {
             var tiles = GetComponentsInChildren<Tile>();
             foreach(Tile tile in tiles) {
@@ -92,7 +97,6 @@ namespace Chess.Core {
         private IEnumerable<Vector3Int> GenerateObstaclePositions() {
             Dictionary<int, Vector3Int> positions = new Dictionary<int, Vector3Int>();
             int totalTiles = (int) ((gridSize.x - (2 * areaWithoutObstacles)) * (gridSize.y) * (gridSize.z - (areaWithoutObstacles)) * obstacleDensity);
-            print("total tiles " + totalTiles);
             int i = 0, a = 0;
             while(i < totalTiles) {
                 a++;
@@ -100,28 +104,27 @@ namespace Chess.Core {
                     Debug.LogWarning("stopped due to infinite loop");
                 }
             //for (int a = 0; a < 10; a++) {   
-                print($"{i} i of {totalTiles} total tiles");
                 var temp = new Vector3Int(Utils.GetRandomNumber(0 + areaWithoutObstacles, gridSize.x - areaWithoutObstacles), Utils.GetRandomNumber(0, gridSize.y), Utils.GetRandomNumber(0, gridSize.z));
                 if(!positions.ContainsKey(temp.GetHashCode())) {
                     i++;
-                    print("added obstacle to " + temp);
                     positions[temp.GetHashCode()] = temp;
                 }
-            }
-            foreach(var output in positions.Values) {
-                print("ouptut " + output);
             }
             return positions.Values;
         }
         
         private void SetPlayerPieces() {
-
+            Tile pos = tileGrid[gridSize.x/2, gridSize.y-1, gridSize.z/2];
+            var temp = Instantiate(unit, unitParent);
+            temp.SetTile(pos);
+            pos.AddIOnTile(temp);
         }
 
         private void GenerateObstacles(IEnumerable<Vector3Int> positions) {
             foreach(var pos in positions) {
                 Tile tile = GetTile(pos);
-                Instantiate(obstaclePrefab, tile.transform.position, Quaternion.identity, tile.transform);
+                var obstacle = Instantiate(obstaclePrefab, tile.transform);
+                tile.AddIOnTile(obstacle);
                 tile.GetComponentInChildren<MeshRenderer>().material = selectColor;
             }
 
