@@ -12,7 +12,6 @@ namespace Chess.Core {
         private Queue<MovementPattern> patternQueue;
         private PlayerType playerType = PlayerType.player1;
         void Start() {
-           // GenerateValidMovements(movementPatterns[0], Color.green);
             SetQueue();
         }
 
@@ -26,9 +25,11 @@ namespace Chess.Core {
             patternSelection.SetUnit(this);
         }
 
-        public void SetTile(Tile newTile) {
+        public void Move(Tile newTile) {
+            currTile?.AddIOnTile(null);
             currTile = newTile;
             transform.position = currTile.transform.position;
+            currTile.AddIOnTile(this);
         }
 
         public MovementPattern GetNextPattern() {
@@ -41,15 +42,17 @@ namespace Chess.Core {
             patternQueue = new Queue<MovementPattern>(movementPatterns.OrderBy(pat => rnd.Next()));
         }
 
-        public void GenerateValidMovements(MovementPattern pattern, Color newColor) {
+        public void GenerateValidMovements(MovementPattern pattern, Color newColor = default(Color)) {
             foreach(var pos in pattern.GetValidOffsets(currTile.GetGridPos())) {
                 Tile tile = Grid.Instance.GetTile(pos);
-                if(ValidMovement(tile, pattern))tile.GetComponentInChildren<MeshRenderer>().material.color = newColor;
+                if (ValidMovement(tile, pattern)) { 
+                    if (newColor == default(Color)) tile.SetColor(Grid.Instance.GetColor(tile.GetGridPos()));//if there is no color specified it resets the color
+                    else tile.SetColor(newColor);
+                }
             }
         }
 
         public bool ValidMovement(Tile tile, MovementPattern pattern) {
-       //     Debug.Log($"test valid movement for {tile} and returned {tile.onTile == null} and{pattern.ValidMovement(currTile, tile)}");
             return tile.onTile == null && pattern.ValidMovement(currTile,tile);
         }
     }

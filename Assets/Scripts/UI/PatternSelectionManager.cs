@@ -39,11 +39,15 @@ namespace Chess.UI {
             button.GetComponentInChildren<Text>().text = pattern.GetMovement().ToString();
         }
 
-        
+        public void MoveUnit(Tile newTile) {
+            if (unit == null) Debug.LogError("There is no unit");
+            unit.GenerateValidMovements(activePattern);
+            unit.Move(newTile);
+            activePattern = null;
+        }
 
         private void SetActivePattern(int buttonNum, MovementPattern pattern) {
-            print("set active pattern for " + buttonNum + " " + pattern.ToString());
-            if(activePattern != null)unit.GenerateValidMovements(activePattern, Color.grey);//reset previous patterns 
+            if(activePattern != null)unit.GenerateValidMovements(activePattern);//reset previous patterns 
             activePattern = pattern;
             unit.GenerateValidMovements(activePattern, Color.green);// sets new pattern to green
             AddPatternToButton(buttonNum, pattern);

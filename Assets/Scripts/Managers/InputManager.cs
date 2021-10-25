@@ -9,8 +9,12 @@ namespace Chess.Core {
         ISelectable oldSelection;
         ISelectable selection;
         [SerializeField] MovementPattern test;
-        [SerializeField] PatternSelectionManager patternSelectionManager;
+        PatternSelectionManager patternSelectionManager;
         PlayerType playerType;
+
+        public void Awake() {
+            patternSelectionManager = GlobalPointers.GetPlayerPointer(playerType).patternSelectionManager;
+        }
 
         public void SetPlayerType(PlayerType playerType) {
             this.playerType = playerType;
@@ -42,14 +46,13 @@ namespace Chess.Core {
 
         private void Select() {
             if(selection.IsSelectable(playerType)) selection.OnSelect();
+            Tile tile = selection as Tile;
+            if (tile != null && patternSelectionManager.ValidMovement(tile)) patternSelectionManager.MoveUnit(tile); 
+            
         }
 
         private void Unselect() {
 
-        }
-
-        private void TryMoveUnit(Unit unit, Tile tile) {
-          //  if(patternSelectionManager.)
         }
     }
 

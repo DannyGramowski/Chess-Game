@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace Chess.Core {
     public class Grid : Singleton<Grid> {
-       // System.Random randomGenerator = new System.Random();
         [Min(1)]
         [SerializeField] Vector3Int gridSize ;
+        [SerializeField] Vector3Int playerStartLoc;
         [SerializeField] Tile tilePrefab;
         [SerializeField] Obstacle obstaclePrefab;
-        [SerializeField] Material selectColor;
         [SerializeField] Transform parentPrefab; //parent container for the tiles in the grid
-        [SerializeField] Material[] colorCycle;
+        [SerializeField] Color[] colorCycle;
         [SerializeField] Unit unit;
         [SerializeField] Transform unitParent;
         [SerializeField][Range(0, 1)] float obstacleDensity;
@@ -25,7 +24,7 @@ namespace Chess.Core {
 
         private void Start() {
             Task<IEnumerable<Vector3Int>> task = Task<IEnumerable<Vector3Int>>.Factory.StartNew(() => GenerateObstaclePositions());
-            if (transform.childCount == 0) CreateGrid();
+            if (GetComponentInChildren<Tile>() == null) CreateGrid();
             else SetGridPointers();
             SetPlayerPieces();
             task.Wait();
@@ -36,8 +35,8 @@ namespace Chess.Core {
         [Button("Create Grid")]
         public void CreateGrid() {
             ClearChildren();
+            print("create grid");
             tileGrid = new Tile[gridSize.x, gridSize.y, gridSize.z];
-            //float x=0, y=0,z=0
             Vector3 previousPos = Vector3.zero;
             for(int y = 0; y < tileGrid.GetLength(1);  y++) {
                 Transform parentY = Instantiate(parentPrefab, transform);
@@ -48,8 +47,8 @@ namespace Chess.Core {
                     for(int x = 0; x < tileGrid.GetLength(0); x++) {
                         var temp = Instantiate(tilePrefab, new Vector3(x * tileOffset.x, y * tileOffset.y, z * tileOffset.z), Quaternion.identity, parentZ);
                         temp.name = $"tile({x}, {y}, {z}";
-                        temp.GetComponentInChildren<MeshRenderer>().material = colorCycle[y % colorCycle.Length];
                         temp.Setup(new Vector3Int(x, y, z));
+                        temp.GetComponentInChildren<MeshRenderer>().material.color = GetColor(temp.GetGridPos());
                         if (Application.isPlaying) tileGrid[x, y, z] = temp;
                     }
                 }
@@ -66,27 +65,25 @@ namespace Chess.Core {
             }
         }    
 
-       /* [Button("test hash")]
-        public void Test() {
-            for(int x = 0; x < 4; x++) {
-                for (int y = 0; y < 4; y++) {
-                    for (int z = 0; z < 4; z++) {
-                        Vector3 temp = new Vector3(x,y,z);
-                        print(temp + " " + temp.GetHashCode());
-                    }
-                }
-            }
-        }*/
-
         public Tile GetTile(Vector3Int pos) {
             return tileGrid[pos.x, pos.y, pos.z];
+        }
+
+        public Tile GetTile(int x, int y, int z) {
+            return tileGrid[x, y, z];
         }
 
         public Vector3Int GetGridSize() {
             return new Vector3Int(tileGrid.GetLength(0), tileGrid.GetLength(1), tileGrid.GetLength(2));
         }
 
+        public Color GetColor(Vector3Int pos ) {
+            return colorCycle[pos.y % colorCycle.Length];
+        }
+
         private void SetGridPointers() {
+            tileGrid = new Tile[gridSize.x, gridSize.y, gridSize.z];
+            print("set grid pointers");
             var tiles = GetComponentsInChildren<Tile>();
             foreach(Tile tile in tiles) {
                 Vector3Int temp = tile.GetGridPos();
@@ -100,8 +97,8 @@ namespace Chess.Core {
             int i = 0, a = 0;
             while(i < totalTiles) {
                 a++;
-                if(a > totalTiles * 2) {
-                    Debug.LogWarning("stopped due to infinite loop");
+                if(a > totalTiles * 2) {                
+                    Debug.LogError("stopped due to infinite loop");
                 }
             //for (int a = 0; a < 10; a++) {   
                 var temp = new Vector3Int(Utils.GetRandomNumber(0 + areaWithoutObstacles, gridSize.x - areaWithoutObstacles), Utils.GetRandomNumber(0, gridSize.y), Utils.GetRandomNumber(0, gridSize.z));
@@ -114,9 +111,9 @@ namespace Chess.Core {
         }
         
         private void SetPlayerPieces() {
-            Tile pos = tileGrid[gridSize.x/2, gridSize.y-1, gridSize.z/2];
+            Tile pos = GetTile(playerStartLoc);
             var temp = Instantiate(unit, unitParent);
-            temp.SetTile(pos);
+            temp.Move(pos);
             pos.AddIOnTile(temp);
         }
 
@@ -125,7 +122,6 @@ namespace Chess.Core {
                 Tile tile = GetTile(pos);
                 var obstacle = Instantiate(obstaclePrefab, tile.transform);
                 tile.AddIOnTile(obstacle);
-                tile.GetComponentInChildren<MeshRenderer>().material = selectColor;
             }
 
         }
