@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using UnityEngine;
 
 namespace Chess.Core {
-    public class GameManager : MonoBehaviour {
+    public class GameManager : NetworkBehaviour {
 
         // Use this for initialization
         void Start() {

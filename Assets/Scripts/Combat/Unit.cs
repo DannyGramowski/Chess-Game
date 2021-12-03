@@ -21,8 +21,8 @@ namespace Chess.Core {
 
         public void OnSelect() {
             print("selected " + name);
-            PatternSelectionManager patternSelection = GlobalPointers.GetPlayerPointer(playerType).patternSelectionManager;
-            patternSelection.SetUnit(this);
+         //   PatternSelectionManager patternSelection = GlobalPointers.GetPlayerPointer(playerType).patternSelectionManager;
+          //  patternSelection.SetUnit(this);
         }
 
         public void Move(Tile newTile) {

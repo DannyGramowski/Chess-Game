@@ -1,19 +1,19 @@
 ﻿using Chess.UI;
+using Mirror;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Chess.Core {
 
-    public class InputManager : MonoBehaviour {
+    public class InputManager : NetworkBehaviour {
         ISelectable oldSelection;
         ISelectable selection;
         [SerializeField] MovementPattern test;
-        PatternSelectionManager patternSelectionManager;
+        [SerializeField]PatternSelectionManager patternSelectionManager;
         PlayerType playerType;
 
         public void Awake() {
-            patternSelectionManager = GlobalPointers.GetPlayerPointer(playerType).patternSelectionManager;
         }
 
         public void SetPlayerType(PlayerType playerType) {
