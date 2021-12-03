@@ -101,7 +101,7 @@ namespace Chess.Core {
                     Debug.LogError("stopped due to infinite loop");
                 }
             //for (int a = 0; a < 10; a++) {   
-                var temp = new Vector3Int(Utils.GetRandomNumber(0 + areaWithoutObstacles, gridSize.x - areaWithoutObstacles), Utils.GetRandomNumber(0, gridSize.y), Utils.GetRandomNumber(0, gridSize.z));
+                var temp = new Vector3Int(Utils.GetRandomNumber(0, gridSize.x), Utils.GetRandomNumber(0, gridSize.y), Utils.GetRandomNumber(0 + areaWithoutObstacles, gridSize.z - areaWithoutObstacles));
                 if(!positions.ContainsKey(temp.GetHashCode())) {
                     i++;
                     positions[temp.GetHashCode()] = temp;

@@ -13,21 +13,24 @@ namespace Chess.Core {
         [SerializeField]PatternSelectionManager patternSelectionManager;
         PlayerType playerType;
 
-        public void Awake() {
+        private void Start() {
+            
         }
 
+        private void Update() {
+            if(Mouse.current.leftButton.wasPressedThisFrame) {
+                SelectObject();
+            }
+        }
         public void SetPlayerType(PlayerType playerType) {
             this.playerType = playerType;
         }
 
-        public void LeftClick(InputAction.CallbackContext context) {
-            if (context.performed) {
-                SelectObject();
-            }
-        }
+        
 
 
         private bool SelectObject() {
+            print("select object");
             var ray = GlobalPointers.mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit)) {
                 selection = hit.transform.GetComponent<ISelectable>();

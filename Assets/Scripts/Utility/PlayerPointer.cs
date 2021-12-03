@@ -6,9 +6,8 @@ namespace Chess.Core{
     public class PlayerPointer : MonoBehaviour {
         public PatternSelectionManager patternSelectionManager { get; private set; }
         public InputManager inputManager { get; private set; }
-
         public PlayerSquad playerSquad { get; private set; }
-        public PlayerType playerType { get; private set; }d
+        public PlayerType playerType { get; private set; }
  
         [SerializeField] PatternSelectionManager _patternSelectionManager;
         [SerializeField] InputManager _inputManager;
@@ -20,7 +19,7 @@ namespace Chess.Core{
             patternSelectionManager = _patternSelectionManager;
             patternSelectionManager.SetPlayerType(playerType);
             inputManager = _inputManager;
-            //inputManager.SetPlayerType(playerType);
+            inputManager.SetPlayerType(playerType);
 
         }
     }

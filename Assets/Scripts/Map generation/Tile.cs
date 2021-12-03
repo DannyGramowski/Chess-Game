@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Chess.Core {
+    [SelectionBase]
     public class Tile : MonoBehaviour, ISelectable {
         public IOnTile onTile;
         Vector3Int gridPos;
