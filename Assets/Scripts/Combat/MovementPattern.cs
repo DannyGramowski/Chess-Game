@@ -7,14 +7,15 @@ namespace Chess.Core {
     public class MovementPattern : ScriptableObject {
         [SerializeField] Vector3Int movement;
 
-        private const int X_Z_HASH_CONST= 691;
-        private const int Y_HASH_CONST = 2011;
+        private const int X_Z_HASH= 691;
+        private const int Y_HASH = 2011;
         private const float HALF_PIE = 1.57075f;
         private int checkHash; //multiplies the movement values by prime numbers to determine if the tested movement is a variation of the pattern
         
         private void OnEnable() {
-            checkHash = movement.x * X_Z_HASH_CONST + movement.y * Y_HASH_CONST + movement.z * X_Z_HASH_CONST;
+            checkHash = movement.x * X_Z_HASH + movement.y * Y_HASH + movement.z * X_Z_HASH;
         }
+
         public Vector3Int GetMovement() {
             return movement;
         }
@@ -23,12 +24,12 @@ namespace Chess.Core {
             int distX = Mathf.Abs(toTile.GetGridPos().x - currentTile.GetGridPos().x);
             int distY = Mathf.Abs(toTile.GetGridPos().y - currentTile.GetGridPos().y);
             int distZ = Mathf.Abs(toTile.GetGridPos().z - currentTile.GetGridPos().z);
-            int testHash = distX * X_Z_HASH_CONST + distY * Y_HASH_CONST + distZ * X_Z_HASH_CONST;
+            int testHash = distX * X_Z_HASH + distY * Y_HASH + distZ * X_Z_HASH;
             return testHash == checkHash;
         }
 
         //generates the possible offsets off of the point given based on this movement pattern
-        public IEnumerable<Vector3Int> GetValidOffsets(Vector3Int unitPos) {
+        public IEnumerable<Vector3Int> GetValidOffsets(Vector3Int unitPos, Vector3Int matrixSize) {
             List<Vector3Int> output = new List<Vector3Int>();
             //loops through y values. if there is movement in the y it is 2 iterations otherwise it is only one
             for(int y = 1+NormailizeInt(movement.y); y > 0; y--) {
@@ -45,11 +46,11 @@ namespace Chess.Core {
                     var offset2Change = new Vector2Int(layerCoordsX.x - layerCoordsZ.x, layerCoordsX.y - layerCoordsZ.y);
                     Vector3Int offset2 = new Vector3Int(offset2Change.x + unitPos.x, yCoord + unitPos.y, offset2Change.y + unitPos.z);
 
-                    if (CheckBounds(offset1)) {
+                    if (CheckBounds(offset1, matrixSize)) {
                         output.Add(offset1);
                     }
                     //if there is movement in both the x and z axis it will add an different offset
-                    if (offset2Change.x * offset2Change.y != 0 && CheckBounds(offset2)) {
+                    if (offset2Change.x * offset2Change.y != 0 && CheckBounds(offset2, matrixSize)) {
                         output.Add(offset2);
                     }
                 }
@@ -57,9 +58,8 @@ namespace Chess.Core {
             return output;
         }
 
-        private bool CheckBounds(Vector3Int testPos) {
-            Vector3Int gridSize = Grid.Instance.GetGridSize();
-            return testPos.x >= 0 && testPos.y >= 0 && testPos.z >= 0 && testPos.x < gridSize.x && testPos.y < gridSize.y &&testPos.z < gridSize.z;
+        private bool CheckBounds(Vector3Int testPos, Vector3Int matrixSize) {
+            return testPos.x >= 0 && testPos.y >= 0 && testPos.z >= 0 && testPos.x < matrixSize.x && testPos.y < matrixSize.y &&testPos.z < matrixSize.z;
         }
 
         //if 0 return zero otherwise returns one

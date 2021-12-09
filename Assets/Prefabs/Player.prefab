@@ -47,7 +47,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   test: {fileID: 11400000, guid: 26cea8e69fcfbad4698a0e4c158e63f6, type: 2}
-  patternSelectionManager: {fileID: 0}
+  playerPointer: {fileID: 8886212982594182456}
 --- !u!114 &8886212982594182456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b344f20744752844aa0a15f08ad17f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patternSelectionManager: {fileID: 0}
+  syncMode: 0
+  syncInterval: 0.1
   _inputManager: {fileID: 8796949535547129086}
   _playerSquad: {fileID: 11400000, guid: 38d598b630f8f3d49b9fecba4c513624, type: 2}
   _playerType: 0

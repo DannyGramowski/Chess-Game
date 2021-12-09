@@ -3,16 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Chess.UI;
+using Mirror;
 
 namespace Chess.Core {
-    public class Unit : MonoBehaviour, ISelectable, IOnTile {
+    public class Unit : NetworkBehaviour {
         [SerializeField] MovementPattern[] movementPatterns;
         
-        private Tile currTile;
+
+        [SyncVar] private Tile currTile;
         private Queue<MovementPattern> patternQueue;
         private PlayerType playerType = PlayerType.player1;
-        void Start() {
+        private PlayerPointer playerPointer;
+        IsSelectable selectable;
+        OnTile onTile;
+        public void Awake() {
+            print("start");
             SetQueue();
+            playerPointer = GetComponent<PlayerPointer>();
+            selectable = GetComponent<IsSelectable>();
+            selectable.AddSelectionValidParameters(IsSelectable);
+            onTile = GetComponent<OnTile>();
+       //     not able to move units and units are able to be spawned on top of each other. I think that OnTile is not getting set.
         }
 
         public bool IsSelectable(PlayerType playerType) {
@@ -25,11 +36,15 @@ namespace Chess.Core {
           //  patternSelection.SetUnit(this);
         }
 
-        public void Move(Tile newTile) {
-            currTile?.AddIOnTile(null);
+        [Command]
+        public void CmdMove(Tile newTile) {
+            print("move");
+            currTile?.AddOnTile(null);
             currTile = newTile;
             transform.position = currTile.transform.position;
-            currTile.AddIOnTile(this);
+            currTile.AddOnTile(onTile);
+            print("on tile is " + onTile);
+            print("tile on tile is " + onTile);
         }
 
         public MovementPattern GetNextPattern() {
@@ -43,10 +58,10 @@ namespace Chess.Core {
         }
 
         public void GenerateValidMovements(MovementPattern pattern, Color newColor = default(Color)) {
-            foreach(var pos in pattern.GetValidOffsets(currTile.GetGridPos())) {
-                Tile tile = Grid.Instance.GetTile(pos);
+            foreach(var pos in pattern.GetValidOffsets(currTile.GetGridPos(), playerPointer.matrix.GetMatrixSize())) {
+                Tile tile = playerPointer.matrix.GetTile(pos);
                 if (ValidMovement(tile, pattern)) { 
-                    if (newColor == default(Color)) tile.SetColor(Grid.Instance.GetColor(tile.GetGridPos()));//if there is no color specified it resets the color
+                    if (newColor == default(Color)) tile.SetColor(playerPointer.matrix.GetColor(tile.GetGridPos()));//if there is no color specified it resets the color
                     else tile.SetColor(newColor);
                 }
             }
@@ -54,6 +69,9 @@ namespace Chess.Core {
 
         public bool ValidMovement(Tile tile, MovementPattern pattern) {
             return tile.onTile == null && pattern.ValidMovement(currTile,tile);
+        }
+
+        public void PlacedOnTile(Tile tile) {
         }
     }
 }

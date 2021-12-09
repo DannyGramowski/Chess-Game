@@ -91,8 +91,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5465393981137241787}
   - component: {fileID: 2452756976955882480}
+  - component: {fileID: 3042810069735084136}
+  - component: {fileID: -4382165103414649271}
   - component: {fileID: 5446229135764356734}
   - component: {fileID: -6377656112823018622}
+  - component: {fileID: -7835770687896228797}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -127,11 +130,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fc4ca024d40cb46a2d65d3002692e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   movementPatterns:
   - {fileID: 11400000, guid: 95a595fde718248478e5e18171839427, type: 2}
   - {fileID: 11400000, guid: 9f82840473fd03e42aae6d2ad6efce9a, type: 2}
   - {fileID: 11400000, guid: 26cea8e69fcfbad4698a0e4c158e63f6, type: 2}
   - {fileID: 11400000, guid: ceced541c1e93a041bbf73910b2323c0, type: 2}
+--- !u!114 &3042810069735084136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115462654068584086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e545d9ff77b7d5e45a162ddc73476544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  OnSelectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2452756976955882480}
+        m_TargetAssemblyTypeName: Chess.Core.Unit, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-4382165103414649271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115462654068584086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fc2d70a71d8dd4b959e161df073603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!136 &5446229135764356734
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -163,3 +211,32 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 02cdb38cabf51404ca7a717b85742ce0
   hasSpawned: 0
+--- !u!114 &-7835770687896228797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115462654068584086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  sendInterval: 0.05
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 0
+  bufferTimeMultiplier: 1
+  bufferSizeLimit: 64
+  catchupThreshold: 4
+  catchupMultiplier: 0.1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}

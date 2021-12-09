@@ -7,14 +7,16 @@ using UnityEngine.InputSystem;
 namespace Chess.Core {
 
     public class InputManager : NetworkBehaviour {
-        ISelectable oldSelection;
-        ISelectable selection;
+        IsSelectable oldSelection;
+        IsSelectable selection;
         [SerializeField] MovementPattern test;
-        [SerializeField]PatternSelectionManager patternSelectionManager;
+        [SerializeField] PlayerPointer playerPointer;
+        PatternSelectionManager patternSelectionManager;
         PlayerType playerType;
 
         private void Start() {
-            
+            patternSelectionManager = playerPointer.patternSelectionManager;
+            playerType = playerPointer.playerType;
         }
 
         private void Update() {
@@ -33,7 +35,7 @@ namespace Chess.Core {
             print("select object");
             var ray = GlobalPointers.mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit)) {
-                selection = hit.transform.GetComponent<ISelectable>();
+                selection = hit.transform.GetComponent<IsSelectable>();
 
                 if(oldSelection != null) {
                     Unselect();
@@ -48,8 +50,8 @@ namespace Chess.Core {
         }
 
         private void Select() {
-            if(selection.IsSelectable(playerType)) selection.OnSelect();
-            Tile tile = selection as Tile;
+            if(selection.SelectionValid(playerType)) selection.OnSelect();
+            Tile tile = selection.GetComponent<Tile>();
             if (tile != null && patternSelectionManager.ValidMovement(tile)) patternSelectionManager.MoveUnit(tile); 
             
         }

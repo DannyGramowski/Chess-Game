@@ -382,6 +382,8 @@ GameObject:
   - component: {fileID: 4622284819877315005}
   - component: {fileID: 4200523810572572022}
   - component: {fileID: -2864069814669631337}
+  - component: {fileID: -858838386199259170}
+  - component: {fileID: 3553420806564477994}
   m_Layer: 0
   m_Name: spot
   m_TagString: Untagged
@@ -417,7 +419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af85e216117eb6642ba44a59c8f9bc80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 2330148515370147445}
+  syncMode: 0
+  syncInterval: 0.1
+  onTile: {fileID: 0}
 --- !u!65 &4200523810572572022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -448,3 +452,33 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 0cdfc66e193d1994f8a961249459e6dd
   hasSpawned: 0
+--- !u!114 &-858838386199259170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809443450596379309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e545d9ff77b7d5e45a162ddc73476544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  OnSelectEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3553420806564477994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809443450596379309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85772ac82ec954488c87e690214a83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2330148515370147445}

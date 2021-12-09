@@ -42,7 +42,7 @@ namespace Chess.UI {
         public void MoveUnit(Tile newTile) {
             if (unit == null) Debug.LogError("There is no unit");
             unit.GenerateValidMovements(activePattern);
-            unit.Move(newTile);
+            unit.CmdMove(newTile);
             activePattern = null;
         }
 

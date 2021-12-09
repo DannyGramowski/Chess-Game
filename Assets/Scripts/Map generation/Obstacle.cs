@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Chess.Core {
     [SelectionBase]
-    public class Obstacle : MonoBehaviour, IOnTile {
-
+    public class Obstacle : MonoBehaviour {
+    
     }
 }
