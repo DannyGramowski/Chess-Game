@@ -25,14 +25,37 @@ namespace Chess.Core {
         Tile[ , , ] tileMatrix;
 
         private void Start() {
-            Task<IEnumerable<Vector3Int>> task = Task<IEnumerable<Vector3Int>>.Factory.StartNew(() => GenerateObstaclePositions());
-            if (GetComponentInChildren<Tile>() == null) CreateMatrix();
-            else SetMatrixPointers();
-            task.Wait();
-
-            GenerateObstacles(task.Result);
         }
 
+
+        /*  public override void OnStartServer() {
+            //  if (!isServerOnly) return;
+              print("on server start");
+              base.OnStartServer();
+
+              //Task<IEnumerable<Vector3Int>> task = Task<IEnumerable<Vector3Int>>.Factory.StartNew(() => GenerateObstaclePositions());
+          //    CreateMatrix();
+              //else SetMatrixPointers();
+              //task.Wait();
+
+            //  GenerateObstacles(GenerateObstaclePositions());
+          }*/
+        public override void OnStartServer() {
+            base.OnStartServer();
+
+            print("on server start");
+            CreateMatrix();
+        }
+       /* public override void OnStartClient() {
+            if (!NetworkServer.active) {
+                print("network Server not active");
+                return;
+            }
+
+            //base.OnStartClient();
+            print("on client start");
+            CreateMatrix();
+        }*/
         #region Server
 
         #endregion
@@ -41,8 +64,10 @@ namespace Chess.Core {
 
         #endregion
 
-        [Button("Create Grid")]
+      //  [Button("Create Grid")]
+
         public void CreateMatrix() {
+            print("create matrix");
             ClearChildren();
             tileMatrix = new Tile[matrixSize.x, matrixSize.y, matrixSize.z];
             Vector3 previousPos = Vector3.zero;
@@ -53,12 +78,14 @@ namespace Chess.Core {
                     Transform parentZ = Instantiate(parentPrefab, parentY);
                     parentZ.name = "z parent " + z;
                     for(int x = 0; x < tileMatrix.GetLength(0); x++) {
-                        var temp = Instantiate(tilePrefab, new Vector3(x * tileOffset.x, y * tileOffset.y, z * tileOffset.z), Quaternion.identity, parentZ);
-                        NetworkServer.Spawn(temp.gameObject);
+                        Vector3 spawnPos = new Vector3(x * tileOffset.x, y * tileOffset.y, z * tileOffset.z);
+                        print($"instantiated tile at {spawnPos}" );
+                        var temp = Instantiate(tilePrefab, spawnPos, Quaternion.identity, parentZ);
                         temp.name = $"tile({x}, {y}, {z}";
                         temp.Setup(new Vector3Int(x, y, z));
                         temp.GetComponentInChildren<MeshRenderer>().material.color = GetColor(temp.GetGridPos());
                         if (Application.isPlaying) tileMatrix[x, y, z] = temp;
+                        NetworkServer.Spawn(temp.gameObject);
                     }
                 }
             }       
@@ -101,6 +128,7 @@ namespace Chess.Core {
         }
 
         private IEnumerable<Vector3Int> GenerateObstaclePositions() {
+            print("generate obstacle positions");
             Dictionary<int, Vector3Int> positions = new Dictionary<int, Vector3Int>();
             int totalTiles = (int) ((matrixSize.x - (2 * areaWithoutObstacles)) * (matrixSize.y) * (matrixSize.z - (areaWithoutObstacles)) * obstacleDensity);
             int i = 0, a = 0;
@@ -120,7 +148,7 @@ namespace Chess.Core {
         }
         
         public void SetPlayerPieces(List<Unit> units, PlayerType playerType) {
-
+            print("set player pieces");
             int min = 0;
             int max = areaWithoutObstacles;
             if(playerType == PlayerType.player1) {

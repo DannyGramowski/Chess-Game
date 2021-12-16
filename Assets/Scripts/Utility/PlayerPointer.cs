@@ -32,7 +32,7 @@ namespace Chess.Core{
         //need to do SetPlayerPieces in start because NetworkIdentity is set after Awake
         public override void OnStartServer() {
             base.OnStartServer();
-            matrix.SetPlayerPieces(SpawnPlayerSquad(), playerType);
+            //matrix.SetPlayerPieces(SpawnPlayerSquad(), playerType);
         }
 
         public List<Unit> SpawnPlayerSquad() {

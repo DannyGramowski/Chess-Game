@@ -13,6 +13,7 @@ namespace Chess.Core {
         IsSelectable isSelectable;
 
         public void Setup(Vector3Int mapPos) {
+           // print(name + " setup " + connectionToServer);
             this.mapPos = mapPos;
             if (GlobalPointers.useDebug) SetText(mapPos);
             isSelectable = GetComponent<IsSelectable>();
@@ -28,7 +29,7 @@ namespace Chess.Core {
         }
 
         public void AddOnTile(OnTile onTile) {
-            print(name + " added on tile " + onTile);
+           // print(name + " added on tile " + onTile);
             //setting on tile in setup but it is getting cleared propably becasue syncvar
             this.onTile = onTile;
         }

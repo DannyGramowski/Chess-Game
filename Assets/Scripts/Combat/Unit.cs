@@ -17,7 +17,7 @@ namespace Chess.Core {
         IsSelectable selectable;
         OnTile onTile;
         public void Awake() {
-            print("start");
+            //print("start");
             SetQueue();
             playerPointer = GetComponent<PlayerPointer>();
             selectable = GetComponent<IsSelectable>();
@@ -38,13 +38,13 @@ namespace Chess.Core {
 
         [Command]
         public void CmdMove(Tile newTile) {
-            print("move");
+        //    print("move");
             currTile?.AddOnTile(null);
             currTile = newTile;
             transform.position = currTile.transform.position;
             currTile.AddOnTile(onTile);
-            print("on tile is " + onTile);
-            print("tile on tile is " + onTile);
+       //     print("on tile is " + onTile);
+        //    print("tile on tile is " + onTile);
         }
 
         public MovementPattern GetNextPattern() {

@@ -255,14 +255,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  matrixSize: {x: 10, y: 6, z: 8}
+  matrixSize: {x: 10, y: 2, z: 8}
   unitSpawnLevel: 5
   tilePrefab: {fileID: 4622284819877315005, guid: 0cdfc66e193d1994f8a961249459e6dd, type: 3}
   obstaclePrefab: {fileID: 3112848050836241447, guid: 36599f82245632745a40ff2096dbf205, type: 3}
   parentPrefab: {fileID: 4645904852604346370, guid: 26a43f1f9fd702547b6be5f6b8b2908f, type: 3}
   colorCycle:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.4431373, g: 0.09411766, b: 0.09411766, a: 1}
+  - {r: 0.1509434, g: 0.13171947, b: 0.13171947, a: 1}
   unitParent: {fileID: 0}
   obstacleDensity: 0.25
   areaWithoutObstacles: 2
