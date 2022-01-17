@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5465393981137241787}
   m_RootOrder: 0
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -96,6 +98,8 @@ GameObject:
   - component: {fileID: 5446229135764356734}
   - component: {fileID: -6377656112823018622}
   - component: {fileID: -7835770687896228797}
+  - component: {fileID: -6678092543792064107}
+  - component: {fileID: 5175898279011987471}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -113,6 +117,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -58.51013, y: 86.77558, z: -8.542206}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5456062614735202807}
   m_Father: {fileID: 0}
@@ -137,6 +142,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f82840473fd03e42aae6d2ad6efce9a, type: 2}
   - {fileID: 11400000, guid: 26cea8e69fcfbad4698a0e4c158e63f6, type: 2}
   - {fileID: 11400000, guid: ceced541c1e93a041bbf73910b2323c0, type: 2}
+  abilities:
+  - {fileID: -6678092543792064107}
+  - {fileID: 5175898279011987471}
 --- !u!114 &3042810069735084136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +174,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDeselectEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-4382165103414649271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +191,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  OnSetTile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2452756976955882480}
+        m_TargetAssemblyTypeName: Chess.Combat.Unit, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!136 &5446229135764356734
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -240,3 +266,33 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &-6678092543792064107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115462654068584086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c48df33e4d99e1e42ada16ef50ba873d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionPointCost: 4
+  abilityName: attack
+  abilityImage: {fileID: 0}
+--- !u!114 &5175898279011987471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115462654068584086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f775edad5129fb4439c7ac86093964f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionPointCost: 2
+  abilityName: move
+  abilityImage: {fileID: 0}

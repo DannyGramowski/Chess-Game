@@ -2,17 +2,18 @@
 using UnityEngine;
 using Chess.Core;
 using UnityEngine.UI;
+using Chess.Combat;
 
 namespace Chess.UI {
-    public class PatternSelectionManager : MonoBehaviour {
+    public class PatternSelectionManager : IUI {
         [SerializeField] Button[] buttons;
         Unit unit;
         MovementPattern activePattern;
-        PlayerType playerType;
+        //PlayerType playerType;
 
-        public void SetPlayerType(PlayerType playerType) {
+      /*  public void SetPlayerType(PlayerType playerType) {
             this.playerType = playerType;
-        }
+        }*/
 
         public void SetUnit(Unit newUnit) {
             if (unit == newUnit) return;
@@ -53,7 +54,10 @@ namespace Chess.UI {
             AddPatternToButton(buttonNum, pattern);
         }
 
+        public override void SetDisplay(object data) {
+            SetUnit((Unit)data);
+        }
 
-
+        public override UIType GetUIType() => UIType.patternSelectionManager;
     }
 }

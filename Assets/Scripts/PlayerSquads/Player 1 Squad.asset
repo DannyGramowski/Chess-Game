@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numUnits: 3
   squad:
-  - {fileID: 1026142876867622402, guid: 9eec81355c55b6745a917e8d9b357a7c, type: 3}
-  - {fileID: 7522251042809727994, guid: 75b2d2a4fa6c3fb4296054141a0051cd, type: 3}
   - {fileID: 8788556450615699262, guid: 73cbed378e3f50841aecbaa97080277b, type: 3}
+  - {fileID: 7522251042809727994, guid: 75b2d2a4fa6c3fb4296054141a0051cd, type: 3}
+  - {fileID: 1026142876867622402, guid: 9eec81355c55b6745a917e8d9b357a7c, type: 3}

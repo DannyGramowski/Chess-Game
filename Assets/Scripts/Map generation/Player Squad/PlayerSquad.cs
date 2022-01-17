@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Chess.Core {
+namespace Chess.Combat {
     [CreateAssetMenu(fileName = "New Player Squad", menuName = "Create Player Squad")]
     public class PlayerSquad : ScriptableObject {
         
         
         [SerializeField] int numUnits;
-        [SerializeField] Unit[] squad;
+        [SerializeField] List<Unit> squad;
 
         private void Awake() {
-            if (squad.Length > numUnits) Debug.LogError("squad length is larger than size");
+            if (squad.Count > numUnits) Debug.LogError("squad length is larger than size");
         }
 
-        public Unit[] GetUnits() => squad;
+        public List<Unit> GetUnits() => squad;
         public Unit GetUnit(int index) => squad[index];
 
         public void SetUnit(Unit unit, int index) {

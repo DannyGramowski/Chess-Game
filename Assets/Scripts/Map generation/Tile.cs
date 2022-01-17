@@ -8,18 +8,29 @@ namespace Chess.Core {
     [SelectionBase]
     public class Tile : NetworkBehaviour {
         [SyncVar] public OnTile onTile;
-        Vector3Int mapPos;
+        [SyncVar] Vector3Int mapPos;
         // try moving to a different component to see if this is causeing unity not to be able to sync it
         IsSelectable isSelectable;
 
+        #region Server
         public void Setup(Vector3Int mapPos) {
            // print(name + " setup " + connectionToServer);
             this.mapPos = mapPos;
             if (GlobalPointers.useDebug) SetText(mapPos);
+           
+        }
+        #endregion
+
+        #region Client
+
+        public override void OnStartClient() {
             isSelectable = GetComponent<IsSelectable>();
             isSelectable.AddSelectionValidParameters(SelectionValid);
         }
 
+        #endregion
+
+        #region Helper
         public Vector3Int GetGridPos() {
             return mapPos;
         }
@@ -27,6 +38,13 @@ namespace Chess.Core {
         public void SetColor(Color color) {
             GetComponentInChildren<MeshRenderer>().material.color = color;
         }
+
+        public void ResetColor() {
+            SetColor(GlobalPointers.matrix.GetColor(GetGridPos()));
+        }
+        #endregion
+
+      
 
         public void AddOnTile(OnTile onTile) {
            // print(name + " added on tile " + onTile);

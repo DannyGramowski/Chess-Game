@@ -6,21 +6,27 @@ using UnityEngine.Events;
 
 namespace Chess.Core {
     public class IsSelectable: NetworkBehaviour{
+        public UnityEvent OnSelectEvent;
+        public UnityEvent OnDeselectEvent;
         Func<PlayerType, bool> selectionValid;
-        [SerializeField] UnityEvent OnSelectEvent;
 
         public void AddSelectionValidParameters(Func<PlayerType, bool> methods) {
             selectionValid += methods;
         }
 
+        public void AddOnSelectEvent(UnityAction onSelect) {
+            OnSelectEvent.AddListener(onSelect);
+        }  
+        public void AddOnDeselectEvent(UnityAction onDeselect) {
+            OnDeselectEvent.AddListener(onDeselect);
+        } 
+
         public bool SelectionValid(PlayerType playerType) {
-            bool result = selectionValid(playerType);
-            
-            return result;
+            return selectionValid(playerType);
         }
 
         public void OnSelect() => OnSelectEvent?.Invoke();
-/*        bool IsSelectable(PlayerType playerType);
-        void OnSelect();*/
+        public void OnDeselect() => OnSelectEvent?.Invoke();
+
     }
 }

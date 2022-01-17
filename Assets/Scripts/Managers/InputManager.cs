@@ -1,9 +1,11 @@
 ﻿using Chess.UI;
+using Chess.Combat;
 using Mirror;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 namespace Chess.Core {
 
     public class InputManager : NetworkBehaviour {
@@ -32,7 +34,7 @@ namespace Chess.Core {
 
 
         private bool SelectObject() {
-            print("select object");
+            //print("select object");
             var ray = GlobalPointers.mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit)) {
                 selection = hit.transform.GetComponent<IsSelectable>();
@@ -52,18 +54,22 @@ namespace Chess.Core {
         private void Select() {
             if(selection.SelectionValid(playerType)) selection.OnSelect();
             Tile tile = selection.GetComponent<Tile>();
-            if (tile != null && patternSelectionManager.ValidMovement(tile)) patternSelectionManager.MoveUnit(tile); 
+           // PatternSelectionManager selectionManager = GlobalPointers.UI_Manager.GetComponentInChildren<PatternSelectionManager>();
+            //if(tile != null && patternSelectionManager.ValidMovement(tile)) print("is turn " + GlobalPointers.gameManager.isTurn);
+            if (tile != null && patternSelectionManager.ValidMovement(tile) && GlobalPointers.gameManager.isTurn) {
+                patternSelectionManager.MoveUnit(tile);
+            }
             
         }
 
         private void Unselect() {
-
+            oldSelection.OnDeselect();
         }
     }
 
     public enum PlayerType{
         player1,
         player2,
-        all
+        all=-1
     }
 }

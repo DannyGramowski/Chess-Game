@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Chess.Core;
 
-namespace Chess.Core {
+namespace Chess.Combat {
     [CreateAssetMenu(fileName = "new movement pattern", menuName = "Create Movement Pattern")]
     public class MovementPattern : ScriptableObject {
         [SerializeField] Vector3Int movement;

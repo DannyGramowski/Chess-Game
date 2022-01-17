@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using Sirenix.OdinInspector;
 using System.Threading.Tasks;
 using Mirror;
@@ -9,100 +10,150 @@ using Mirror;
 namespace Chess.Core {
     public class Matrix : NetworkBehaviour {
         [Min(1)]
-        [SerializeField] Vector3Int matrixSize ;
+        [SerializeField] Vector3Int matrixSize;
         //  [SerializeField] Vector3Int playerStartLoc;
         [SerializeField] int unitSpawnLevel;
-        [SerializeField] Tile tilePrefab;
-        [SerializeField] Obstacle obstaclePrefab;
+        [SerializeField] GameObject tilePrefab;
+        [SerializeField] GameObject obstaclePrefab;
         [SerializeField] Transform parentPrefab; //parent container for the tiles in the grid
         [SerializeField] Color[] colorCycle;
-       // [SerializeField] Unit unit;
+        // [SerializeField] Unit unit;
         [SerializeField] Transform unitParent;
-        [SerializeField][Range(0, 1)] float obstacleDensity;
+        [SerializeField] [Range(0, 1)] float obstacleDensity;
         [SerializeField] int areaWithoutObstacles;//width on each side without obstacle spawn
         [Min(0.001f)]
         [SerializeField] Vector3 tileOffset = Vector3.one; //the offset of the tiles in the grid
-        Tile[ , , ] tileMatrix;
+        [SerializeField] Tile[,,] tileMatrix;
 
-        private void Start() {
-        }
+        #region Server
 
-
-        /*  public override void OnStartServer() {
-            //  if (!isServerOnly) return;
-              print("on server start");
-              base.OnStartServer();
-
-              //Task<IEnumerable<Vector3Int>> task = Task<IEnumerable<Vector3Int>>.Factory.StartNew(() => GenerateObstaclePositions());
-          //    CreateMatrix();
-              //else SetMatrixPointers();
-              //task.Wait();
-
-            //  GenerateObstacles(GenerateObstaclePositions());
-          }*/
         public override void OnStartServer() {
-            base.OnStartServer();
-
-            print("on server start");
             CreateMatrix();
+            GenerateObstacles();
         }
-       /* public override void OnStartClient() {
+
+        [Server]
+        public void CreateMatrix() {
             if (!NetworkServer.active) {
-                print("network Server not active");
+                print("server not active");
                 return;
             }
 
-            //base.OnStartClient();
-            print("on client start");
-            CreateMatrix();
-        }*/
-        #region Server
+            for (int y = 0; y < matrixSize.y; y++) {
+                for (int x = 0; x < matrixSize.x; x++) {
+                    for (int z = 0; z < matrixSize.z; z++) {
+                        Vector3Int pos = new Vector3Int(x, y, z);
+                        GameObject tile = Instantiate(tilePrefab, pos, Quaternion.identity);
+                        tile.GetComponent<Tile>().Setup(pos);
+                        tile.GetComponentInChildren<MeshRenderer>().material.color = colorCycle[0];
+                        NetworkServer.Spawn(tile);
+                    }
+                }
+            }
 
+            SetUpTiles();
+        }
+
+        [Server]
+        public void SetPlayerPieces(List<OnTile> units, PlayerType playerType) {
+           // print("set player pieces");
+         //  not setting pieces to different sides
+            int min = 0;
+            int max = areaWithoutObstacles;
+            if (playerType == PlayerType.player1) {
+                min = matrixSize.z - areaWithoutObstacles;
+                max = matrixSize.z;
+            }
+
+            foreach (OnTile unit in units) {
+              //  print("start place unit " + unit);
+                Tile tile = null;
+                while (true) {
+                    Vector3Int pos = new Vector3Int(Utils.GetRandomNumber(0, matrixSize.x), unitSpawnLevel, Utils.GetRandomNumber(min, max));
+                   // print("new test pos " + pos + " for " + unit);
+                    tile = GetTile(pos);
+                  //  print("test tile " + tile);
+                    if (tile.IsEmpty()) break;
+                }
+               // print("set " + unit + " to tile " + tile);
+                unit.SetTile(tile);
+            }
+        }
+
+        private void GenerateObstacles() {
+            IEnumerable<Vector3Int> positions = GenerateObstaclePositions();
+            foreach (var pos in positions) {
+               // print("obstacle at pos " + pos);
+                Tile tile = GetTile(pos);
+                var obstacle = Instantiate(obstaclePrefab, tile.transform);
+                NetworkServer.Spawn(obstacle);
+                tile.AddOnTile(obstacle.GetComponent<OnTile>());
+            }
+            SetUpObstacles();
+        }
         #endregion
 
         #region Client
-
-        #endregion
-
-      //  [Button("Create Grid")]
-
-        public void CreateMatrix() {
-            print("create matrix");
-            ClearChildren();
-            tileMatrix = new Tile[matrixSize.x, matrixSize.y, matrixSize.z];
-            Vector3 previousPos = Vector3.zero;
-            for(int y = 0; y < tileMatrix.GetLength(1);  y++) {
-                Transform parentY = Instantiate(parentPrefab, transform);
-                parentY.name = "y parent " + y;
-                for(int z = 0; z < tileMatrix.GetLength(2); z++) {
-                    Transform parentZ = Instantiate(parentPrefab, parentY);
-                    parentZ.name = "z parent " + z;
-                    for(int x = 0; x < tileMatrix.GetLength(0); x++) {
-                        Vector3 spawnPos = new Vector3(x * tileOffset.x, y * tileOffset.y, z * tileOffset.z);
-                        print($"instantiated tile at {spawnPos}" );
-                        var temp = Instantiate(tilePrefab, spawnPos, Quaternion.identity, parentZ);
-                        temp.name = $"tile({x}, {y}, {z}";
-                        temp.Setup(new Vector3Int(x, y, z));
-                        temp.GetComponentInChildren<MeshRenderer>().material.color = GetColor(temp.GetGridPos());
-                        if (Application.isPlaying) tileMatrix[x, y, z] = temp;
-                        NetworkServer.Spawn(temp.gameObject);
-                    }
-                }
-            }       
+        public override void OnStartClient() {
+            if (isClientOnly) {
+                SetUpTiles();
+                SetUpObstacles();
+            }
         }
 
-        [Button("Clear Children")]
-        public void ClearChildren() {
-            for(int i = transform.childCount - 1; i >= 0; i--) {
-              //  print("child count " + transform.childCount + " i " + i);
-                Transform child = transform.GetChild(i);
-              //  print(child.name);
-                DestroyImmediate(child.gameObject);
-            }
-        }    
+        public void SetUpTiles() {
+            tileMatrix = new Tile[matrixSize.x, matrixSize.y, matrixSize.z];
+            var tiles = FindObjectsOfType<Tile>().Reverse();
 
+            //holds all the x parents b/c we dont need to know y parents
+            Transform[] xParents = new Transform[matrixSize.y * matrixSize.x];
+            for(int y = 0; y < matrixSize.y; y++) {
+                Transform yParent = Instantiate(parentPrefab, transform);
+                yParent.name = "Y Parent " + y.ToString();
+                for(int x = 0; x < matrixSize.x; x++) {
+                    Transform xParent = Instantiate(parentPrefab, yParent);
+                   // print("created " + xParent);
+                    xParent.name = $"X Parent ({x},{y})";
+                    xParents[y * matrixSize.x + x] = xParent;
+                }
+            }
+
+                int parentIndex = 0;
+            int zCapacity = 0;
+            foreach (var tile in tiles) {
+                Vector3Int gridPos = tile.GetGridPos();
+                 tile.name = "tile " + gridPos.ToString();
+                tile.GetComponentInChildren<MeshRenderer>().material.color = GetColor(gridPos);
+                    tile.transform.parent = xParents[parentIndex];
+                    tileMatrix[gridPos.x, gridPos.y, gridPos.z] = tile;
+                    zCapacity++;
+                    if(zCapacity == matrixSize.z) {
+                        zCapacity = 0;
+                        parentIndex++;
+                    }
+                }
+            }
+        
+        public void SetUpObstacles() {
+            var obstacles = FindObjectsOfType<Obstacle>();
+            Transform obstacleParent = Instantiate(parentPrefab, transform);
+            obstacleParent.name = "obstacle parent";
+
+            foreach(var obstacle in obstacles) {
+                obstacle.transform.parent = obstacleParent;
+            }
+        }
+
+            
+        #endregion
+
+        #region HelperFunctions
+        public Color GetColor(Vector3Int pos) {
+            return colorCycle[pos.y % colorCycle.Length];
+        }
         public Tile GetTile(Vector3Int pos) {
-            return tileMatrix[pos.x, pos.y, pos.z];
+            //print($"get tile {pos.ToString()}");
+            return GetTile(pos.x, pos.y, pos.z);
         }
 
         public Tile GetTile(int x, int y, int z) {
@@ -113,79 +164,42 @@ namespace Chess.Core {
             return new Vector3Int(tileMatrix.GetLength(0), tileMatrix.GetLength(1), tileMatrix.GetLength(2));
         }
 
-        public Color GetColor(Vector3Int pos ) {
-            return colorCycle[pos.y % colorCycle.Length];
-        }
-
-        private void SetMatrixPointers() {
-            tileMatrix = new Tile[matrixSize.x, matrixSize.y, matrixSize.z];
-            //print("set grid pointers");
-            var tiles = GetComponentsInChildren<Tile>();
-            foreach(Tile tile in tiles) {
-                Vector3Int temp = tile.GetGridPos();
-                tileMatrix[temp.x, temp.y, temp.z] = tile;
-            }
-        }
-
         private IEnumerable<Vector3Int> GenerateObstaclePositions() {
-            print("generate obstacle positions");
+        //    print("generate obstacle positions");
             Dictionary<int, Vector3Int> positions = new Dictionary<int, Vector3Int>();
-            int totalTiles = (int) ((matrixSize.x - (2 * areaWithoutObstacles)) * (matrixSize.y) * (matrixSize.z - (areaWithoutObstacles)) * obstacleDensity);
+            int totalTiles = (int)((matrixSize.x - (2 * areaWithoutObstacles)) * (matrixSize.y) * (matrixSize.z - (areaWithoutObstacles)) * obstacleDensity);
+    //        print("total tiles " + totalTiles);
             int i = 0, a = 0;
-            while(i < totalTiles) {
+            while (i < totalTiles) {
                 a++;
-                if(a > totalTiles * 3) {                
+                if (a > totalTiles * 3) {
                     Debug.LogError("stopped due to infinite loop");
                 }
-            //for (int a = 0; a < 10; a++) {   
+                //for (int a = 0; a < 10; a++) {   
                 var temp = new Vector3Int(Utils.GetRandomNumber(0, matrixSize.x), Utils.GetRandomNumber(0, matrixSize.y), Utils.GetRandomNumber(0 + areaWithoutObstacles, matrixSize.z - areaWithoutObstacles));
-                if(!positions.ContainsKey(temp.GetHashCode())) {
+                if (!positions.ContainsKey(temp.GetHashCode())) {
                     i++;
                     positions[temp.GetHashCode()] = temp;
                 }
             }
+          //  print("end generate obstacle positions");
             return positions.Values;
         }
-        
-        public void SetPlayerPieces(List<Unit> units, PlayerType playerType) {
-            print("set player pieces");
-            int min = 0;
-            int max = areaWithoutObstacles;
-            if(playerType == PlayerType.player1) {
-                min = matrixSize.z - areaWithoutObstacles;
-                max = matrixSize.z;
-            }
 
-            foreach (Unit unit in units) {
-                print("start place unit " + unit);
-                Tile tile = null;
-                while (true) {
-                    Vector3Int pos = new Vector3Int(Utils.GetRandomNumber(0, matrixSize.x), unitSpawnLevel, Utils.GetRandomNumber(min, max));
-                    print("new test pos " + pos + " for " + unit);
-                    tile = GetTile(pos);
-                    if (tile.IsEmpty()) break;
-                }
-                print("set " + unit + " to tile " + tile);
-                unit.CmdMove(tile);
-            }     
+       
             /*Tile pos = GetTile(playerStartLoc);
             var temp = Instantiate(unit, unitParent);
             temp.CmdMove(pos);
-            pos.AddIOnTile(temp);*/
-        }
-
-        private void GenerateObstacles(IEnumerable<Vector3Int> positions) {
-            foreach(var pos in positions) {
-                Tile tile = GetTile(pos);
-                var obstacle = Instantiate(obstaclePrefab, tile.transform);
-                NetworkServer.Spawn(obstacle.gameObject);
-                tile.AddOnTile(obstacle.GetComponent<OnTile>());
-            }
-
-        }
-    }
+            pos.AddIOnTile(temp); */
 }
+
+        #endregion
+
+    }
+
+
 //player piieces
 //obstacles
 // generate tiles
 //powerups
+
