@@ -4,21 +4,25 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 namespace Chess.UI {
     public class UIManager : MonoBehaviour {
         [SerializeField] IUI[] UIs;
-/*        [SerializeField] PatternSelectionManager patternSelectionManager;
-        [SerializeField] AbilityDisplayManager abilityDisplayManager;*/
         [SerializeField] TMP_Text turnText;
+        public IUI ActiveUI => _activeUI;
+
+        IUI _activeUI;
 
         public IUI SetUI(UIType _UIType, object data) {
+            if (ActiveUI != null && ActiveUI.GetUIType() == _UIType) return ActiveUI;
             IUI output = null;
             foreach(IUI ui in UIs) {
                 if(ui.GetUIType() == _UIType) {
                     output = ui;
                     (ui as MonoBehaviour).gameObject.SetActive(true);
                     ui.SetDisplay(data);
+                    _activeUI = ui;
                 } else {
                     (ui as MonoBehaviour).gameObject.SetActive(false);
 
@@ -42,21 +46,15 @@ namespace Chess.UI {
             }
             return output;
         }
-       /* public void SetPatterns(Unit unit) {
-            patternSelectionManager.SetUnit(unit);
-        }
 
-        public void SetAbilityDisplays(Unit unit) {
-            abilityDisplayManager.SetDisplay(unit);
-        }*/
+        public IUI GetUI(UIType _UIType) => UIs.Where(ui => ui.GetUIType() == _UIType).First();
+        
 
         public void EndTurn() {
-           // print("ui manager end turn");
             GlobalPointers.gameManager.EndTurn();
         }
 
         public void SetTurnText(int turnNumber) {
-          //  print("player type " + GlobalPointers.playerType + ": turn num " + turnNumber);
             if(turnNumber == (int) GlobalPointers.playerType) {
                 turnText.text = "your turn";
             } else {

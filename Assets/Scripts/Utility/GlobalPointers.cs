@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine;
 using Mirror;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Chess.Core {
     public class GlobalPointers : Singleton<GlobalPointers> {
@@ -16,6 +18,7 @@ namespace Chess.Core {
         [SerializeField] UIManager _UIManager;
         [SerializeField] Matrix _matrix;
 
+        List<PlayerPointer> playerPointers = new List<PlayerPointer>();
         
         public void SetVariables() {
             mainCamera = Camera.main;
@@ -28,6 +31,14 @@ namespace Chess.Core {
                 print(cons.ToString());
             }
             print("set player type to " + playerType);*/
+        }
+
+        public void AddPlayerPointer(PlayerPointer playerPointer) {
+            playerPointers.Add(playerPointer);
+        }
+
+        public PlayerPointer GetPlayerPointer(PlayerType playerType) {
+            return playerPointers.Where(a => a.playerType == playerType).First();
         }
     }
 }

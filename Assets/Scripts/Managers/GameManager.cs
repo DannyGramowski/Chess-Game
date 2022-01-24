@@ -20,9 +20,7 @@ namespace Chess.Core {
         #region Client
         [Command(requiresAuthority = false)]
         public void CmdEndTurn(PlayerType playerType) {
-            print("cmd end turn for turn " + playerTurn + ": player type " + GlobalPointers.playerType);
             if (playerTurn != (int)playerType) return;
-            print("ended turn for " + playerTurn);
             playerTurn = (playerTurn + 1) % 2;
            // isTurn = !isTurn;
             RpcSetTurnText(playerTurn);

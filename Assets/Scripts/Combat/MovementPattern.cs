@@ -17,9 +17,8 @@ namespace Chess.Combat {
             checkHash = movement.x * X_Z_HASH + movement.y * Y_HASH + movement.z * X_Z_HASH;
         }
 
-        public Vector3Int GetMovement() {
-            return movement;
-        }
+        public Vector3Int GetMovement() =>movement;
+        
 
         public bool ValidMovement(Tile currentTile, Tile toTile) {
             int distX = Mathf.Abs(toTile.GetGridPos().x - currentTile.GetGridPos().x);

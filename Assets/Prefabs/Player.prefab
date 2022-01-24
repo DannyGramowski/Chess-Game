@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5652436951608195677}
   - component: {fileID: 8796949535547129086}
   - component: {fileID: 8886212982594182456}
+  - component: {fileID: -7893238254654099066}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -28,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  test: {fileID: 11400000, guid: 26cea8e69fcfbad4698a0e4c158e63f6, type: 2}
+  test: {fileID: 0}
   playerPointer: {fileID: 8886212982594182456}
 --- !u!114 &8886212982594182456
 MonoBehaviour:
@@ -62,6 +64,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  playerType: 0
   _inputManager: {fileID: 8796949535547129086}
   _playerSquad: {fileID: 11400000, guid: 38d598b630f8f3d49b9fecba4c513624, type: 2}
-  _playerType: 0
+--- !u!114 &-7893238254654099066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8091264022576400372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 4f3bfc3cdf3b05c4789cdb20b6a8b921
+  hasSpawned: 0

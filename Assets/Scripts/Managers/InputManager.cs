@@ -11,13 +11,11 @@ namespace Chess.Core {
     public class InputManager : NetworkBehaviour {
         IsSelectable oldSelection;
         IsSelectable selection;
-        [SerializeField] MovementPattern test;
         [SerializeField] PlayerPointer playerPointer;
-        PatternSelectionManager patternSelectionManager;
         PlayerType playerType;
+        Ability activeAbility;
 
         private void Start() {
-            patternSelectionManager = playerPointer.patternSelectionManager;
             playerType = playerPointer.playerType;
         }
 
@@ -31,7 +29,9 @@ namespace Chess.Core {
         }
 
         
-
+        public void SetActiveAbility(Ability newAbility) {
+            activeAbility = newAbility;
+        }
 
         private bool SelectObject() {
             //print("select object");
@@ -52,13 +52,16 @@ namespace Chess.Core {
         }
 
         private void Select() {
-            if(selection.SelectionValid(playerType)) selection.OnSelect();
+            if(activeAbility != null) {
+                if(activeAbility.ValidSelection(selection)) {
+                    activeAbility.ActivateAbility(selection);
+                }
+            } else if(selection.SelectionValid(playerType)) selection.OnSelect();
             Tile tile = selection.GetComponent<Tile>();
-           // PatternSelectionManager selectionManager = GlobalPointers.UI_Manager.GetComponentInChildren<PatternSelectionManager>();
-            //if(tile != null && patternSelectionManager.ValidMovement(tile)) print("is turn " + GlobalPointers.gameManager.isTurn);
-            if (tile != null && patternSelectionManager.ValidMovement(tile) && GlobalPointers.gameManager.isTurn) {
+
+           /* if (tile != null && patternSelectionManager.ValidMovement(tile) && GlobalPointers.gameManager.isTurn) {
                 patternSelectionManager.MoveUnit(tile);
-            }
+            }*/
             
         }
 

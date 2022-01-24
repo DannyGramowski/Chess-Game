@@ -34,7 +34,8 @@ namespace Chess.Core{
           //  print("squad length " + playerSquad.GetUnits().Count);
             foreach(Unit unit in playerSquad.GetUnits()) {
                 var temp = Instantiate(unit.gameObject);
-               // print("instantiate " + temp);
+                // print("instantiate " + temp);
+                temp.GetComponent<Unit>().playerPointer = this;
                 NetworkServer.Spawn(temp, connectionToClient);
                 output.Add(temp.GetComponent<OnTile>());
             }
@@ -48,6 +49,7 @@ namespace Chess.Core{
             if (matrix != null) return;//prevents method being called twice
 
             patternSelectionManager = FindObjectOfType<PatternSelectionManager>(true);
+            GlobalPointers.Instance.AddPlayerPointer(this);
             //patternSelectionManager.SetPlayerType(playerType);
             inputManager = _inputManager;
             inputManager.SetPlayerType(playerType);

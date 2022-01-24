@@ -8,6 +8,7 @@ namespace Chess.UI {
     public class PatternSelectionManager : IUI {
         [SerializeField] Button[] buttons;
         Unit unit;
+        AMove activeMoveAbility;
         MovementPattern activePattern;
         //PlayerType playerType;
 
@@ -18,12 +19,14 @@ namespace Chess.UI {
         public void SetUnit(Unit newUnit) {
             if (unit == newUnit) return;
             unit = newUnit;
+            activeMoveAbility = unit.GetAbility<AMove>();
+
             activePattern = null;
             SetButtons();
         }
 
         public bool ValidMovement(Tile testTile) {
-            return unit != null && activePattern != null && unit.ValidMovement(testTile, activePattern);
+            return unit != null && activePattern != null && activeMoveAbility.ValidMovement(testTile, activePattern);
         }
 
         private void SetButtons() {
@@ -42,19 +45,21 @@ namespace Chess.UI {
 
         public void MoveUnit(Tile newTile) {
             if (unit == null) Debug.LogError("There is no unit");
-            unit.GenerateValidMovements(activePattern);
+            activeMoveAbility.SetMovementOptionColors(activePattern);
             unit.CmdMove(newTile);
             activePattern = null;
         }
 
         private void SetActivePattern(int buttonNum, MovementPattern pattern) {
-            if(activePattern != null)unit.GenerateValidMovements(activePattern);//reset previous patterns 
+            if(activePattern != null) activeMoveAbility.SetMovementOptionColors(activePattern);//reset previous patterns 
             activePattern = pattern;
-            unit.GenerateValidMovements(activePattern, Color.green);// sets new pattern to green
+            activeMoveAbility.SetCurrentPattern(pattern);
+           activeMoveAbility.SetMovementOptionColors(activePattern, Color.green);// sets new pattern to green
             AddPatternToButton(buttonNum, pattern);
         }
 
         public override void SetDisplay(object data) {
+            print("set display for pattern selection manager");
             SetUnit((Unit)data);
         }
 

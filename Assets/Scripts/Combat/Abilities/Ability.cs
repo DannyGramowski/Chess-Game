@@ -1,6 +1,7 @@
 ﻿using Chess.Core;
 using System.Collections;
 using UnityEngine;
+using System;
 
 namespace Chess.Combat {
     public abstract class Ability : MonoBehaviour {
@@ -8,11 +9,29 @@ namespace Chess.Combat {
         public string AbilityName => abilityName;
         public Sprite AbilityImage => abilityImage;     
         
-        [SerializeField]  int actionPointCost;
-        [SerializeField]  string abilityName;
-        [SerializeField]  Sprite abilityImage;
+        [SerializeField] protected int actionPointCost;
+        [SerializeField] protected string abilityName;
+        [SerializeField] protected Sprite abilityImage;
 
-        public abstract void ActivateAbility();
+        protected Unit baseUnit;
+
+        protected void Start() {
+            baseUnit = GetComponent<Unit>();            
+        }
+
+        public virtual void ActivateAbility(IsSelectable additionalData) {
+            print("decreased AP");
+            UI.AbilityDisplayManager displayManager = GlobalPointers.UI_Manager.GetUI(UI.UIType.abilityDisplayManager) as UI.AbilityDisplayManager;
+            GetComponent<Unit>().CmdDecreaseActionPoints(ActionPointCost); 
+            if (displayManager.gameObject.activeSelf) displayManager.UpdateAPDisplay();
+        }
+
+        public virtual Type GetAdditionSelectionType() => null;
+
+        public virtual bool ValidSelection(IsSelectable data) => true;
+
+        public virtual void CancelAbility() { }
+        
        
     }
 }

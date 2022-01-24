@@ -1,4 +1,5 @@
 using Chess.Combat;
+using Chess.Core;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,16 +16,14 @@ public class AbilityDisplay : MonoBehaviour {
         currAbility = ability;
         abilityPointText.text = ability.ActionPointCost.ToString();
         abilityNameText.text = ability.AbilityName;
-     //   button.onClick.AddListener(ability.ActivateAbility);
-        //print(ability.AbilityName + " button was set to " + button.onClick.);
     }
 
     public void ActivateAbility() {
         print("activated " + currAbility.AbilityName);
-        currAbility.ActivateAbility();
+        if (currAbility.ActionPointCost > currAbility.GetComponent<Unit>().currActionPoints) return;
+        if(currAbility.GetAdditionSelectionType() != null) {
+            currAbility.GetComponent<Unit>().playerPointer.inputManager.SetActiveAbility(currAbility);
+        }
+        currAbility.ActivateAbility(null);
     }
-
-  /*  public void Test() {
-        print("test button worked");
-    }*/
 }
