@@ -11,11 +11,12 @@ namespace Chess.Core {
     public class InputManager : NetworkBehaviour {
         IsSelectable oldSelection;
         IsSelectable selection;
-        [SerializeField] PlayerPointer playerPointer;
+        PlayerPointer playerPointer;
         PlayerType playerType;
         Ability activeAbility;
 
         private void Start() {
+            playerPointer = GetComponent<PlayerPointer>();
             playerType = playerPointer.playerType;
         }
 

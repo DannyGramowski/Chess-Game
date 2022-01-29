@@ -10,7 +10,7 @@ namespace Chess.Lobby {
         public void HostLobby() {
             landingPagePanel.SetActive(false);
 
-           // NetworkManager.
+            NetworkManager.singleton.StartHost();
         }
     }
 }

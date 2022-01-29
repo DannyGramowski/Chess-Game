@@ -22,7 +22,7 @@ public class AbilityDisplay : MonoBehaviour {
         print("activated " + currAbility.AbilityName);
         if (currAbility.ActionPointCost > currAbility.GetComponent<Unit>().currActionPoints) return;
         if(currAbility.GetAdditionSelectionType() != null) {
-            currAbility.GetComponent<Unit>().playerPointer.inputManager.SetActiveAbility(currAbility);
+            currAbility.GetComponent<Unit>().player.playerPointer.inputManager.SetActiveAbility(currAbility);
         }
         currAbility.ActivateAbility(null);
     }

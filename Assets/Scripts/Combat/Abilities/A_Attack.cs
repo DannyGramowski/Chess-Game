@@ -47,10 +47,10 @@ namespace Chess.Combat {
             output &= hit.transform.TryGetComponent<Unit>(out unit);
             print("hit " + hit.transform.name);
             print("unit " + unit);
-            output &= unit?.playerPointer.playerType != baseUnit.playerPointer.playerType;
-            print("base unit pointer " + baseUnit.playerPointer);
-            print("target unit pointer " + targetUnit.playerPointer);
-            print("opposite player types " + (unit?.playerPointer.playerType != baseUnit.playerPointer.playerType));
+            output &= unit?.player.playerType != baseUnit.player.playerType;
+            print("base unit pointer " + baseUnit.player);
+            print("target unit pointer " + targetUnit.player);
+            print("opposite player types " + (unit?.player.playerType != baseUnit.player.playerType));
             return output;
         }
 

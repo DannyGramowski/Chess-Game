@@ -18,7 +18,7 @@ namespace Chess.Core {
         [SerializeField] UIManager _UIManager;
         [SerializeField] Matrix _matrix;
 
-        List<PlayerPointer> playerPointers = new List<PlayerPointer>();
+        List<Player> players = new List<Player>();
         
         public void SetVariables() {
             mainCamera = Camera.main;
@@ -33,12 +33,12 @@ namespace Chess.Core {
             print("set player type to " + playerType);*/
         }
 
-        public void AddPlayerPointer(PlayerPointer playerPointer) {
-            playerPointers.Add(playerPointer);
+        public void AddPlayer(Player player) {
+            players.Add(player);
         }
 
-        public PlayerPointer GetPlayerPointer(PlayerType playerType) {
-            return playerPointers.Where(a => a.playerType == playerType).First();
+        public Player GetPlayer(PlayerType playerType) {
+            return players.Where(a => a.playerType == playerType).First();
         }
     }
 }

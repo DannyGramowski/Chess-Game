@@ -9,7 +9,7 @@ using System;
 
 namespace Chess.Combat {
     public class Unit : NetworkBehaviour {
-        [SyncVar] public PlayerPointer playerPointer;
+        [SyncVar] public Player player;
         public float HealthPercentage => currHealth / maxHealth;
 
         [SerializeField] MovementPattern[] movementPatterns;
@@ -22,7 +22,7 @@ namespace Chess.Combat {
         [SyncVar] public float currHealth;
         [SyncVar] private Tile currTile;
         private Queue<MovementPattern> patternQueue;
-        private PlayerType playerType => playerPointer.playerType;
+        private PlayerType playerType => player.playerPointer.playerType;
         private IsSelectable selectable;
         private OnTile onTile;
 
