@@ -20,6 +20,7 @@ namespace Chess.Combat{
                     SetMovementOptionColors(currentPattern);
                     baseUnit.CmdMove(selectedTile);
                     GlobalPointers.UI_Manager.SetUI(UI.UIType.abilityDisplayManager, baseUnit);
+                    actionPointCost = currentPattern.GetActionPointCost();
                     base.ActivateAbility(additionalData);
                 }
             }

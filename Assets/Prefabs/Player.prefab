@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputManager: {fileID: 8796949535547129086}
-  _playerSquad: {fileID: 11400000, guid: 38d598b630f8f3d49b9fecba4c513624, type: 2}
 --- !u!114 &-7893238254654099066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerNum: -1
-  playerPointer: {fileID: 0}
+  playerPointer: {fileID: 8886212982594182456}
   playerType: 0
+  playerSquad: {fileID: 11400000, guid: 38d598b630f8f3d49b9fecba4c513624, type: 2}

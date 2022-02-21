@@ -10,6 +10,7 @@ namespace Chess.UI {
     public class UIManager : MonoBehaviour {
         [SerializeField] IUI[] UIs;
         [SerializeField] TMP_Text turnText;
+        
         public IUI ActiveUI => _activeUI;
 
         IUI _activeUI;
@@ -61,11 +62,16 @@ namespace Chess.UI {
                 turnText.text = "opponents turn";
             }
         }
+
+        public void SetTurnText(string newText) {
+            turnText.text = newText;
+        }
       
     }
 
     public enum UIType {
         patternSelectionManager,
-        abilityDisplayManager
+        abilityDisplayManager,
+        setupManager
     }
 }

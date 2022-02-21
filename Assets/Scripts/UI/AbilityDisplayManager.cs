@@ -13,7 +13,7 @@ namespace Chess.UI {
 
         ObjectPool<AbilityDisplay> abilityDisplayPool;
         Unit currUnit;
-        // Start is called before the first frame update
+
         public void UpdateAPDisplay() {
             apLeftText.text = currUnit.currActionPoints.ToString();
         }

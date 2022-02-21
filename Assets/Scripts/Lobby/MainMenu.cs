@@ -5,11 +5,16 @@ using UnityEngine;
 
 namespace Chess.Lobby {
     public class MainMenu : MonoBehaviour {
-        [SerializeField] private GameObject landingPagePanel = null;
+        [SerializeField] GameObject landingPagePanel = null;
+        [SerializeField] AudioClip lobbyMusic;
+
+        private void Start() {
+            //Core.AudioManager.Instance.SetMusic(lobbyMusic);
+        }
 
         public void HostLobby() {
             landingPagePanel.SetActive(false);
-
+            
             NetworkManager.singleton.StartHost();
         }
     }

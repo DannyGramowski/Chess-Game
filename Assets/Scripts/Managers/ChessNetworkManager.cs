@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,7 @@ namespace Chess.Core.Managers {
 
         public static event Action ClientOnConnected;
         public static event Action ClientOnDisconnected;
+        public static event Action OnSceneChange;
 
         private bool isGameInProgress = false;
 
@@ -23,7 +25,9 @@ namespace Chess.Core.Managers {
             base.OnServerAddPlayer(conn);
 
             Player player = conn.identity.GetComponent<Player>();
+            player.playerType = (PlayerType)players.Count;
             players.Add(player);
+            
 
             player.SetDisplayName("Player " + players.Count);
             player.SetPartyOwner(players.Count == 1);
@@ -51,29 +55,24 @@ namespace Chess.Core.Managers {
         public void StartGame() {     
             if (players.Count < 2) return;
 
-            Scene gameScene = SceneManager.GetSceneByName("MainGame");
-            print("game scene = " + gameScene.name);
-
+            //SceneManager.LoadScene("MainGame");
+            //print("game scene = " + gameScene.name);
             isGameInProgress = true;
 
-            ServerChangeScene(gameScene.name);
+            ServerChangeScene("MainGame");
         }
-
-        public override void OnServerChangeScene(string newSceneName) {
-            //add code to start game
-        }
-
         #endregion
 
         #region Client
         public override void OnStartClient() {
             // Scene gameScene = SceneManager.GetSceneAt(1);
             //  print("game scene = " + gameScene.name);
-            print("scene count " + SceneManager.sceneCount);
+           // print("scene count " + SceneManager.sceneCount);
             //print("total scenes " + SceneManager.) 
             //globalPointers.SetVariables();
         }
 
+        [Obsolete]
         public override void OnClientConnect(NetworkConnection conn) {
             base.OnClientConnect(conn);
 
@@ -83,6 +82,7 @@ namespace Chess.Core.Managers {
             //matrix.GetComponent<Matrix>().SetUpTiles();
         }
 
+        [Obsolete]
         public override void OnClientDisconnect(NetworkConnection conn) {
             base.OnClientDisconnect(conn);
 
@@ -92,6 +92,13 @@ namespace Chess.Core.Managers {
         public override void OnStopClient() {
             players.Clear();
         }
+
+        public Player GetPlayer(PlayerType playerType) {
+            return players.Find(p => p.playerType == playerType);
+        }
         #endregion
     }
 }
+//hamachi info
+//network unity test network
+//

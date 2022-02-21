@@ -11,24 +11,20 @@ namespace Chess.Core {
     public class InputManager : NetworkBehaviour {
         IsSelectable oldSelection;
         IsSelectable selection;
-        PlayerPointer playerPointer;
         PlayerType playerType;
         Ability activeAbility;
 
+        Unit placeUnit;
+
         private void Start() {
-            playerPointer = GetComponent<PlayerPointer>();
-            playerType = playerPointer.playerType;
+            playerType = GetComponent<Player>().playerType;
         }
 
         private void Update() {
-            if(Mouse.current.leftButton.wasPressedThisFrame) {
+            if (Mouse.current.leftButton.wasPressedThisFrame) {
                 SelectObject();
             }
         }
-        public void SetPlayerType(PlayerType playerType) {
-            this.playerType = playerType;
-        }
-
         
         public void SetActiveAbility(Ability newAbility) {
             activeAbility = newAbility;

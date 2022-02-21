@@ -17,10 +17,10 @@ namespace Chess.Combat {
         [SerializeField] int maxActionPoints;
         [SerializeField] float maxHealth;
 
-
         [SyncVar] public int currActionPoints;
         [SyncVar] public float currHealth;
         [SyncVar] private Tile currTile;
+
         private Queue<MovementPattern> patternQueue;
         private PlayerType playerType => player.playerPointer.playerType;
         private IsSelectable selectable;
@@ -48,8 +48,14 @@ namespace Chess.Combat {
 
         [Server]
         private void Die() {
+            RpcUnitDeathCleanup();
             NetworkServer.Destroy(gameObject);
         }
+
+        [Server]
+        public int GetUnitEquiptmentPoints() {
+            return abilities.Sum(ability => ability.EquiptmentPointCost);
+        } 
 
         #endregion
 
@@ -66,11 +72,17 @@ namespace Chess.Combat {
             onTile = GetComponent<OnTile>();
             currActionPoints = maxActionPoints;
             currHealth = maxHealth;
+            GetComponent<Collider>().enabled = false;
+            GameManager.OnFinishSetup += FinishSetup;
             if (GetAbility<AMove>() == null) Debug.LogError("no move ability on " + name);
             if (GetAbility<A_Attack>() == null) Debug.LogError("no attack ability on " + name);
             //     not able to move units and units are able to be spawned on top of each other. I think that OnTile is not getting set.
         }
 
+        [ClientRpc]
+        public void RpcUnitDeathCleanup() {
+            GameManager.OnFinishSetup -= FinishSetup;
+        }
 
         [Command]
         public void CmdMove(Tile newTile) {
@@ -97,6 +109,7 @@ namespace Chess.Combat {
         public bool IsSelectable(PlayerType playerType) => this.playerType == playerType;
 
         public void OnSelect() => GlobalPointers.UI_Manager.SetUI(UIType.abilityDisplayManager, this);
+        
 
         public void OnDeselect() {
             //GenerateValidMovements(currentPattern);
@@ -127,6 +140,10 @@ namespace Chess.Combat {
 
         public t GetAbility<t>() where t:Ability {
             return GetAbilities().Find(ability => ability is t) as t;
-            }
+        }
+
+        private void FinishSetup() {
+            GetComponent<Collider>().enabled = true;
+        }
     }
 }

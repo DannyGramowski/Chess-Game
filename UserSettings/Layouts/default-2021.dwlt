@@ -39,10 +39,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1613
+    x: 1609
     y: 0
-    width: 307
-    height: 846
+    width: 311
+    height: 765
   m_MinSize: {x: 276, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 87
+  controlID: 42
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -91,8 +91,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 316
-    height: 846
+    width: 314
+    height: 765
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
@@ -116,9 +116,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 846
+    y: 765
     width: 1920
-    height: 261
+    height: 342
   m_MinSize: {x: 100, y: 121}
   m_MaxSize: {x: 4000, y: 4021}
   m_ActualView: {fileID: 19}
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 88
+  controlID: 43
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,11 +245,11 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1920
-    height: 846
+    height: 765
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 89
+  controlID: 44
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -265,10 +265,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 316
+    x: 314
     y: 0
-    width: 1297
-    height: 846
+    width: 1295
+    height: 765
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
@@ -321,15 +321,15 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: Inspector
+    m_Text: Debug
     m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1613
+    x: 1609
     y: 73
-    width: 306
-    height: 825
+    width: 310
+    height: 744
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
-  m_InspectorMode: 0
+  m_InspectorMode: 1
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
@@ -368,22 +368,22 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 729
+    y: 619
     width: 1920
-    height: 430
+    height: 540
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
-  logPanelScroll: {x: 0, y: -119}
+  logPanelScroll: {x: 0, y: 0}
   logPanelSelectedIndex: -1
   logPanelAutoScroll: 1
-  currentFrame: 60259
+  currentFrame: 64921
   logs:
-    lastGrabbedIndex: 2
-    lastGrabbedCount: 3
+    lastGrabbedIndex: 1
+    lastGrabbedCount: 2
     proEntries:
-    - logType: 1
+    - logType: 2
       ignore: 0
       processed: 1
       tempFilterProcessed: 1
@@ -394,49 +394,116 @@ MonoBehaviour:
       listIndex: 0
       nativeIndex: 0
       nativeIdentifier: 0
-      originalLog: KcpTransport initialized!
-      originalStackTrace: 'KcpTransport initialized!
+      originalLog: 'Unable to find player assembly: E:\Unity\Chess Game\Temp\StagingArea\Data\Managed\UnityEngine.TestRunner.dll'
+      originalStackTrace: 'Unable to find player assembly: E:\Unity\Chess Game\Temp\StagingArea\Data\Managed\UnityEngine.TestRunner.dll
 
-        UnityEngine.Debug:Log
+        UnityEngine.Debug:LogWarning
         (object)
 
-        kcp2k.KcpTransport:Awake () (at Assets/Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs:133)
+        Unity.Burst.Editor.BurstAotCompiler:OnPostBuildPlayerScriptDLLsImpl
+        (UnityEditor.Build.Reporting.BuildReport) (at Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:328)
+
+        Unity.Burst.Editor.BurstAotCompiler:OnPostBuildPlayerScriptDLLs
+        (UnityEditor.Build.Reporting.BuildReport) (at Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:186)
+
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()
 
 '
-      nativeFileName: Assets/Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs
+      nativeFileName: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
       nativeFileNamePretty: 
-      nativeLineNumber: 133
+      nativeLineNumber: 328
       watchName: 
-      logText: KcpTransport initialized!
-      logTruncatedText: KcpTransport initialized!
+      logText: 'Unable to find player assembly: E:\Unity\Chess Game\Temp\StagingArea\Data\Managed\UnityEngine.TestRunner.dll'
+      logTruncatedText: 'Unable to find player assembly: E:\Unity\Chess Game\Temp\StagingArea\Data\Managed\UnityEngine.TestRunner.dll'
       logColumnText: 
       fileName: 
       className: 
       namespaceName: 
       lineCount: 1
       hasSourceCode: 0
-      timeStamp: 22:18:52.071
-      timeFrame: 6
-      timeStampDateTimeNow: 22:18:52.071
+      timeStamp: 21:15:21
+      timeFrame: -1
+      timeStampDateTimeNow: 
       instanceID: 0
       collapsedCount: 0
       cachedHeight: -1
       cachedHeightLogWidth: 0
       stackEntries:
-      - fileName: Assets/Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs:133
-        fileNameWithoutPath: KcpTransport.cs
-        fileNameWithoutPathPlusLineNumber: KcpTransport.cs:133
-        fileNamePretty: KcpTransport
+      - fileName: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
+        fileNameWithoutAssets: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
+        fileNameWithoutAssetsPlusLineNumber: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:328
+        fileNameWithoutPath: BurstAotCompiler.cs
+        fileNameWithoutPathPlusLineNumber: BurstAotCompiler.cs:328
+        fileNamePretty: BurstAotCompiler
         instanceID: -1
-        className: KcpTransport
-        methodName: Awake
-        namespaceName: kcp2k
-        lineNumberString: 133
+        className: BurstAotCompiler
+        methodName: OnPostBuildPlayerScriptDLLsImpl
+        namespaceName: Unity.Burst.Editor
+        lineNumberString: 328
         charNumber: 0
-        stackLabel: KcpTransport.Awake()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs:133'
+        stackLabel: BurstAotCompiler.OnPostBuildPlayerScriptDLLsImpl()
+        stackLabel2: ' at Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:328'
+        stackLabel1Content:
+          m_Text: 
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        stackLabel1Width: 0
+        stackLabel1Height: 0
+        stackLabel2Content:
+          m_Text: 
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        stackLabel2Width: 0
+        stackLabel2Height: 0
+        stackSourceLineHeight: 0
+        sourceCode: []
+        sourceCodeUpdated: 0
+        showSource: 1
+      - fileName: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
+        fileNameWithoutAssets: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
+        fileNameWithoutAssetsPlusLineNumber: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:186
+        fileNameWithoutPath: BurstAotCompiler.cs
+        fileNameWithoutPathPlusLineNumber: BurstAotCompiler.cs:186
+        fileNamePretty: BurstAotCompiler
+        instanceID: -1
+        className: BurstAotCompiler
+        methodName: OnPostBuildPlayerScriptDLLs
+        namespaceName: Unity.Burst.Editor
+        lineNumberString: 186
+        charNumber: 0
+        stackLabel: BurstAotCompiler.OnPostBuildPlayerScriptDLLs()
+        stackLabel2: ' at Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:186'
+        stackLabel1Content:
+          m_Text: 
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        stackLabel1Width: 0
+        stackLabel1Height: 0
+        stackLabel2Content:
+          m_Text: 
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        stackLabel2Width: 0
+        stackLabel2Height: 0
+        stackSourceLineHeight: 0
+        sourceCode: []
+        sourceCodeUpdated: 0
+        showSource: 1
+      - fileName: None
+        fileNameWithoutAssets: None
+        fileNameWithoutAssetsPlusLineNumber: None
+        fileNameWithoutPath: None
+        fileNameWithoutPathPlusLineNumber: None
+        fileNamePretty: None
+        instanceID: -1
+        className: EditorApplication
+        methodName: Internal_CallGlobalEventHandler
+        namespaceName: UnityEditor
+        lineNumberString: 0
+        charNumber: 0
+        stackLabel: EditorApplication.Internal_CallGlobalEventHandler()
+        stackLabel2: 
         stackLabel1Content:
           m_Text: 
           m_Image: {fileID: 0}
@@ -456,12 +523,12 @@ MonoBehaviour:
       ignoredStackEntries: []
       lastMatchedCount: 1
       belongsToFilters:
-      - name: Log
+      - name: Warning
         isEnabled: 1
         collapsed: 1
-        itemGUID: 9c65100e-e0a0-42ff-8af6-3cce749065df
+        itemGUID: c9635fda-0ebb-4667-832d-d138a448deeb
         filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
+        mainColor: {r: 1, g: 0.84, b: 0.02, a: 0.7}
         isStandardFilter: 1
         isTempFilter: 0
         filterOnly: 0
@@ -478,7 +545,7 @@ MonoBehaviour:
         collapseIconTexture: 0
         useIconBackground: 1
         useIconSymbol: 0
-        useIconLetter: 0
+        useIconLetter: 1
         useIconTexture: 0
         filterFormatVersion: 1
         iconColorize: 0
@@ -488,7 +555,7 @@ MonoBehaviour:
           - name: 
             isEnabled: 1
             collapsed: 0
-            itemGUID: de84628e-acee-4844-9071-b183d359f9ff
+            itemGUID: 2955ebb2-da1b-4d83-83c3-9d86bf6d9d84
             searchString: <Any>
             searchType: 1
             removeSearchStringFromLog: 0
@@ -497,8 +564,13 @@ MonoBehaviour:
               - name: 
                 isEnabled: 1
                 collapsed: 0
-                itemGUID: b3e251f0-28e0-47d2-90d2-e8cd6d5b49be
-                logType: 1
+                itemGUID: 845d336c-1cfd-41a4-a0d1-22e328bd633d
+                logType: 2
+              - name: 
+                isEnabled: 1
+                collapsed: 0
+                itemGUID: cde1b222-dae8-448b-a4a2-534591429793
+                logType: 5
               selectionList: 0
               collapsable: 1
               collapsed: 0
@@ -507,7 +579,7 @@ MonoBehaviour:
               - name: 
                 isEnabled: 1
                 collapsed: 0
-                itemGUID: bd0c3981-4c80-4177-a264-48749905d788
+                itemGUID: c30e9bbd-3f98-44a6-a1b0-fd144f9dcdd0
                 columnType: 1
               selectionList: 0
               collapsable: 1
@@ -525,18 +597,18 @@ MonoBehaviour:
           isEnabled: 1
           collapsed: 0
           itemGUID: 
-          iconType: 1
+          iconType: 3
           iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
+          iconText: '!'
+          useIconTextFirstLetter: 0
+          useIconLogColor: 0
           iconColor: {r: 1, g: 1, b: 1, a: 1}
           iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
           iconTextureGUID: 
           useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
+          iconOffset: {x: 0, y: 2}
           iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
+          iconSize: 7
         iconSymbol:
           name: 
           isEnabled: 1
@@ -565,7 +637,7 @@ MonoBehaviour:
           useIconTextFirstLetter: 1
           useIconLogColor: 1
           iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPLOGICON
+          iconBuiltInID: BACKGROUNDS_ECPBGTRIANGLE
           iconTextureGUID: 
           useIconShadow: 1
           iconOffset: {x: 0, y: 0}
@@ -592,12 +664,12 @@ MonoBehaviour:
         hideLabelInToolbar: 0
         hideWhenNoMatches: 0
       belongsToStandardFilters:
-      - name: Log
+      - name: Warning
         isEnabled: 1
         collapsed: 1
-        itemGUID: 9c65100e-e0a0-42ff-8af6-3cce749065df
+        itemGUID: c9635fda-0ebb-4667-832d-d138a448deeb
         filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
+        mainColor: {r: 1, g: 0.84, b: 0.02, a: 0.7}
         isStandardFilter: 1
         isTempFilter: 0
         filterOnly: 0
@@ -614,7 +686,7 @@ MonoBehaviour:
         collapseIconTexture: 0
         useIconBackground: 1
         useIconSymbol: 0
-        useIconLetter: 0
+        useIconLetter: 1
         useIconTexture: 0
         filterFormatVersion: 1
         iconColorize: 0
@@ -624,7 +696,7 @@ MonoBehaviour:
           - name: 
             isEnabled: 1
             collapsed: 0
-            itemGUID: de84628e-acee-4844-9071-b183d359f9ff
+            itemGUID: 2955ebb2-da1b-4d83-83c3-9d86bf6d9d84
             searchString: <Any>
             searchType: 1
             removeSearchStringFromLog: 0
@@ -633,8 +705,13 @@ MonoBehaviour:
               - name: 
                 isEnabled: 1
                 collapsed: 0
-                itemGUID: b3e251f0-28e0-47d2-90d2-e8cd6d5b49be
-                logType: 1
+                itemGUID: 845d336c-1cfd-41a4-a0d1-22e328bd633d
+                logType: 2
+              - name: 
+                isEnabled: 1
+                collapsed: 0
+                itemGUID: cde1b222-dae8-448b-a4a2-534591429793
+                logType: 5
               selectionList: 0
               collapsable: 1
               collapsed: 0
@@ -643,7 +720,7 @@ MonoBehaviour:
               - name: 
                 isEnabled: 1
                 collapsed: 0
-                itemGUID: bd0c3981-4c80-4177-a264-48749905d788
+                itemGUID: c30e9bbd-3f98-44a6-a1b0-fd144f9dcdd0
                 columnType: 1
               selectionList: 0
               collapsable: 1
@@ -661,18 +738,18 @@ MonoBehaviour:
           isEnabled: 1
           collapsed: 0
           itemGUID: 
-          iconType: 1
+          iconType: 3
           iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
+          iconText: '!'
+          useIconTextFirstLetter: 0
+          useIconLogColor: 0
           iconColor: {r: 1, g: 1, b: 1, a: 1}
           iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
           iconTextureGUID: 
           useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
+          iconOffset: {x: 0, y: 2}
           iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
+          iconSize: 7
         iconSymbol:
           name: 
           isEnabled: 1
@@ -701,7 +778,7 @@ MonoBehaviour:
           useIconTextFirstLetter: 1
           useIconLogColor: 1
           iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPLOGICON
+          iconBuiltInID: BACKGROUNDS_ECPBGTRIANGLE
           iconTextureGUID: 
           useIconShadow: 1
           iconOffset: {x: 0, y: 0}
@@ -842,679 +919,46 @@ MonoBehaviour:
       listIndex: 1
       nativeIndex: 1
       nativeIdentifier: 0
-      originalLog: Mirror | mirror-networking.com | discord.gg/N9QVxbM
-      originalStackTrace: 'Mirror | mirror-networking.com | discord.gg/N9QVxbM
+      originalLog: 'Build completed with a result of ''Succeeded'' in 13 seconds
+        (13021 ms)
 
-        UnityEngine.Debug:Log
-        (object)
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()'
+      originalStackTrace: 'Build completed with a result of ''Succeeded'' in 13 seconds
+        (13021 ms)
 
-        Mirror.NetworkManager:Awake () (at Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs:191)
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()
 
 '
-      nativeFileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
+      nativeFileName: 
       nativeFileNamePretty: 
-      nativeLineNumber: 191
+      nativeLineNumber: 0
       watchName: 
-      logText: Mirror | mirror-networking.com | discord.gg/N9QVxbM
-      logTruncatedText: Mirror | mirror-networking.com | discord.gg/N9QVxbM
+      logText: 'Build completed with a result of ''Succeeded'' in 13 seconds (13021
+        ms)
+
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()'
+      logTruncatedText: 'Build completed with a result of ''Succeeded'' in 13 seconds
+        (13021 ms)
+
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()'
       logColumnText: 
       fileName: 
       className: 
       namespaceName: 
-      lineCount: 1
+      lineCount: 2
       hasSourceCode: 0
-      timeStamp: 22:18:52.090
-      timeFrame: 6
-      timeStampDateTimeNow: 22:18:52.090
+      timeStamp: 21:15:29
+      timeFrame: -1
+      timeStampDateTimeNow: 
       instanceID: 0
       collapsedCount: 0
       cachedHeight: -1
       cachedHeightLogWidth: 0
-      stackEntries:
-      - fileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/NetworkManager.cs:191
-        fileNameWithoutPath: NetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: NetworkManager.cs:191
-        fileNamePretty: NetworkManager
-        instanceID: -1
-        className: NetworkManager
-        methodName: Awake
-        namespaceName: Mirror
-        lineNumberString: 191
-        charNumber: 0
-        stackLabel: NetworkManager.Awake()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/NetworkManager.cs:191'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      ignoredStackEntries: []
-      lastMatchedCount: 1
-      belongsToFilters:
-      - name: Log
-        isEnabled: 1
-        collapsed: 1
-        itemGUID: 9c65100e-e0a0-42ff-8af6-3cce749065df
-        filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
-        isStandardFilter: 1
-        isTempFilter: 0
-        filterOnly: 0
-        useAdvancedColors: 0
-        customTextColor: {r: 1, g: 1, b: 1, a: 1}
-        customBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
-        swallowStandard: 1
-        standardCanSwallow: 0
-        overrideStandardColors: 1
-        overrideStandardIcon: 1
-        collapseIconBackground: 0
-        collapseIconSymbol: 0
-        collapseIconLetter: 0
-        collapseIconTexture: 0
-        useIconBackground: 1
-        useIconSymbol: 0
-        useIconLetter: 0
-        useIconTexture: 0
-        filterFormatVersion: 1
-        iconColorize: 0
-        useAndOpForSearchList: 0
-        searchList:
-          list:
-          - name: 
-            isEnabled: 1
-            collapsed: 0
-            itemGUID: de84628e-acee-4844-9071-b183d359f9ff
-            searchString: <Any>
-            searchType: 1
-            removeSearchStringFromLog: 0
-            logTypeList:
-              list:
-              - name: 
-                isEnabled: 1
-                collapsed: 0
-                itemGUID: b3e251f0-28e0-47d2-90d2-e8cd6d5b49be
-                logType: 1
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-            columnTypeList:
-              list:
-              - name: 
-                isEnabled: 1
-                collapsed: 0
-                itemGUID: bd0c3981-4c80-4177-a264-48749905d788
-                columnType: 1
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-            sourceCodeList:
-              list: []
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-          selectionList: 0
-          collapsable: 1
-          collapsed: 0
-        iconLetter:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconSymbol:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconBackground:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPLOGICON
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconTexture:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        showInToolbar: 1
-        hideLabelInToolbar: 0
-        hideWhenNoMatches: 0
-      belongsToStandardFilters:
-      - name: Log
-        isEnabled: 1
-        collapsed: 1
-        itemGUID: 9c65100e-e0a0-42ff-8af6-3cce749065df
-        filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
-        isStandardFilter: 1
-        isTempFilter: 0
-        filterOnly: 0
-        useAdvancedColors: 0
-        customTextColor: {r: 1, g: 1, b: 1, a: 1}
-        customBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
-        swallowStandard: 1
-        standardCanSwallow: 0
-        overrideStandardColors: 1
-        overrideStandardIcon: 1
-        collapseIconBackground: 0
-        collapseIconSymbol: 0
-        collapseIconLetter: 0
-        collapseIconTexture: 0
-        useIconBackground: 1
-        useIconSymbol: 0
-        useIconLetter: 0
-        useIconTexture: 0
-        filterFormatVersion: 1
-        iconColorize: 0
-        useAndOpForSearchList: 0
-        searchList:
-          list:
-          - name: 
-            isEnabled: 1
-            collapsed: 0
-            itemGUID: de84628e-acee-4844-9071-b183d359f9ff
-            searchString: <Any>
-            searchType: 1
-            removeSearchStringFromLog: 0
-            logTypeList:
-              list:
-              - name: 
-                isEnabled: 1
-                collapsed: 0
-                itemGUID: b3e251f0-28e0-47d2-90d2-e8cd6d5b49be
-                logType: 1
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-            columnTypeList:
-              list:
-              - name: 
-                isEnabled: 1
-                collapsed: 0
-                itemGUID: bd0c3981-4c80-4177-a264-48749905d788
-                columnType: 1
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-            sourceCodeList:
-              list: []
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-          selectionList: 0
-          collapsable: 1
-          collapsed: 0
-        iconLetter:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconSymbol:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconBackground:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPLOGICON
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconTexture:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        showInToolbar: 1
-        hideLabelInToolbar: 0
-        hideWhenNoMatches: 0
-      assignedTempFilter:
-        name: 
-        isEnabled: 1
-        collapsed: 0
-        itemGUID: 
-        filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
-        isStandardFilter: 0
-        isTempFilter: 0
-        filterOnly: 0
-        useAdvancedColors: 0
-        customTextColor: {r: 1, g: 1, b: 1, a: 1}
-        customBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
-        swallowStandard: 1
-        standardCanSwallow: 0
-        overrideStandardColors: 1
-        overrideStandardIcon: 1
-        collapseIconBackground: 0
-        collapseIconSymbol: 0
-        collapseIconLetter: 0
-        collapseIconTexture: 0
-        useIconBackground: 1
-        useIconSymbol: 0
-        useIconLetter: 0
-        useIconTexture: 0
-        filterFormatVersion: -1
-        iconColorize: 0
-        useAndOpForSearchList: 0
-        searchList:
-          list: []
-          selectionList: 0
-          collapsable: 1
-          collapsed: 0
-        iconLetter:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconSymbol:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconBackground:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconTexture:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        showInToolbar: 1
-        hideLabelInToolbar: 0
-        hideWhenNoMatches: 0
-    - logType: 1
-      ignore: 0
-      processed: 1
-      tempFilterProcessed: 1
-      remoteEndPoint: Local
-      logPanelVisible: 1
-      logPanelIndex: 2
-      logOutputHeight: -1
-      listIndex: 2
-      nativeIndex: 2
-      nativeIdentifier: 0
-      originalLog: scene count 1
-      originalStackTrace: 'scene count 1
-
-        UnityEngine.MonoBehaviour:print
-        (object)
-
-        Chess.Core.Managers.ChessNetworkManager:OnStartClient ()
-        (at Assets/Scripts/Managers/ChessNetworkManager.cs:72)
-
-        Mirror.NetworkManager:StartHostClient
-        () (at Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs:507)
-
-        Mirror.NetworkManager:FinishStartHost
-        () (at Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs:486)
-
-        Mirror.NetworkManager:StartHost
-        () (at Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs:435)
-
-        Chess.Lobby.MainMenu:HostLobby
-        () (at Assets/Scripts/Lobby/MainMenu.cs:13)
-
-        UnityEngine.EventSystems.EventSystem:Update
-        () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:501)
-
-'
-      nativeFileName: Assets/Scripts/Managers/ChessNetworkManager.cs
-      nativeFileNamePretty: 
-      nativeLineNumber: 72
-      watchName: 
-      logText: scene count 1
-      logTruncatedText: scene count 1
-      logColumnText: 
-      fileName: 
-      className: 
-      namespaceName: 
-      lineCount: 1
-      hasSourceCode: 0
-      timeStamp: 22:18:56.940
-      timeFrame: 1719
-      timeStampDateTimeNow: 22:18:56.940
-      instanceID: 0
-      collapsedCount: 0
-      cachedHeight: -1
-      cachedHeightLogWidth: 0
-      stackEntries:
-      - fileName: Assets/Scripts/Managers/ChessNetworkManager.cs
-        fileNameWithoutAssets: Scripts/Managers/ChessNetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Scripts/Managers/ChessNetworkManager.cs:72
-        fileNameWithoutPath: ChessNetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: ChessNetworkManager.cs:72
-        fileNamePretty: ChessNetworkManager
-        instanceID: -1
-        className: ChessNetworkManager
-        methodName: OnStartClient
-        namespaceName: Chess.Core.Managers
-        lineNumberString: 72
-        charNumber: 0
-        stackLabel: ChessNetworkManager.OnStartClient()
-        stackLabel2: ' at /Scripts/Managers/ChessNetworkManager.cs:72'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/NetworkManager.cs:507
-        fileNameWithoutPath: NetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: NetworkManager.cs:507
-        fileNamePretty: NetworkManager
-        instanceID: -1
-        className: NetworkManager
-        methodName: StartHostClient
-        namespaceName: Mirror
-        lineNumberString: 507
-        charNumber: 0
-        stackLabel: NetworkManager.StartHostClient()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/NetworkManager.cs:507'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/NetworkManager.cs:486
-        fileNameWithoutPath: NetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: NetworkManager.cs:486
-        fileNamePretty: NetworkManager
-        instanceID: -1
-        className: NetworkManager
-        methodName: FinishStartHost
-        namespaceName: Mirror
-        lineNumberString: 486
-        charNumber: 0
-        stackLabel: NetworkManager.FinishStartHost()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/NetworkManager.cs:486'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/NetworkManager.cs:435
-        fileNameWithoutPath: NetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: NetworkManager.cs:435
-        fileNamePretty: NetworkManager
-        instanceID: -1
-        className: NetworkManager
-        methodName: StartHost
-        namespaceName: Mirror
-        lineNumberString: 435
-        charNumber: 0
-        stackLabel: NetworkManager.StartHost()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/NetworkManager.cs:435'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Assets/Scripts/Lobby/MainMenu.cs
-        fileNameWithoutAssets: Scripts/Lobby/MainMenu.cs
-        fileNameWithoutAssetsPlusLineNumber: Scripts/Lobby/MainMenu.cs:13
-        fileNameWithoutPath: MainMenu.cs
-        fileNameWithoutPathPlusLineNumber: MainMenu.cs:13
-        fileNamePretty: MainMenu
-        instanceID: -1
-        className: MainMenu
-        methodName: HostLobby
-        namespaceName: Chess.Lobby
-        lineNumberString: 13
-        charNumber: 0
-        stackLabel: MainMenu.HostLobby()
-        stackLabel2: ' at /Scripts/Lobby/MainMenu.cs:13'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs
-        fileNameWithoutAssets: Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs
-        fileNameWithoutAssetsPlusLineNumber: Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:501
-        fileNameWithoutPath: EventSystem.cs
-        fileNameWithoutPathPlusLineNumber: EventSystem.cs:501
-        fileNamePretty: EventSystem
-        instanceID: -1
-        className: EventSystem
-        methodName: Update
-        namespaceName: UnityEngine.EventSystems
-        lineNumberString: 501
-        charNumber: 0
-        stackLabel: EventSystem.Update()
-        stackLabel2: ' at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:501'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
+      stackEntries: []
       ignoredStackEntries: []
       lastMatchedCount: 1
       belongsToFilters:
@@ -1898,7 +1342,7 @@ MonoBehaviour:
     compilerErrorEntries: []
     timeFrames: 
     _filteredEntries:
-    - logType: 1
+    - logType: 2
       ignore: 0
       processed: 1
       tempFilterProcessed: 1
@@ -1909,49 +1353,116 @@ MonoBehaviour:
       listIndex: 0
       nativeIndex: 0
       nativeIdentifier: 0
-      originalLog: KcpTransport initialized!
-      originalStackTrace: 'KcpTransport initialized!
+      originalLog: 'Unable to find player assembly: E:\Unity\Chess Game\Temp\StagingArea\Data\Managed\UnityEngine.TestRunner.dll'
+      originalStackTrace: 'Unable to find player assembly: E:\Unity\Chess Game\Temp\StagingArea\Data\Managed\UnityEngine.TestRunner.dll
 
-        UnityEngine.Debug:Log
+        UnityEngine.Debug:LogWarning
         (object)
 
-        kcp2k.KcpTransport:Awake () (at Assets/Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs:133)
+        Unity.Burst.Editor.BurstAotCompiler:OnPostBuildPlayerScriptDLLsImpl
+        (UnityEditor.Build.Reporting.BuildReport) (at Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:328)
+
+        Unity.Burst.Editor.BurstAotCompiler:OnPostBuildPlayerScriptDLLs
+        (UnityEditor.Build.Reporting.BuildReport) (at Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:186)
+
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()
 
 '
-      nativeFileName: Assets/Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs
+      nativeFileName: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
       nativeFileNamePretty: 
-      nativeLineNumber: 133
+      nativeLineNumber: 328
       watchName: 
-      logText: KcpTransport initialized!
-      logTruncatedText: KcpTransport initialized!
+      logText: 'Unable to find player assembly: E:\Unity\Chess Game\Temp\StagingArea\Data\Managed\UnityEngine.TestRunner.dll'
+      logTruncatedText: 'Unable to find player assembly: E:\Unity\Chess Game\Temp\StagingArea\Data\Managed\UnityEngine.TestRunner.dll'
       logColumnText: 
       fileName: 
       className: 
       namespaceName: 
       lineCount: 1
       hasSourceCode: 0
-      timeStamp: 22:18:52.071
-      timeFrame: 6
-      timeStampDateTimeNow: 22:18:52.071
+      timeStamp: 21:15:21
+      timeFrame: -1
+      timeStampDateTimeNow: 
       instanceID: 0
       collapsedCount: 0
       cachedHeight: -1
       cachedHeightLogWidth: 0
       stackEntries:
-      - fileName: Assets/Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs:133
-        fileNameWithoutPath: KcpTransport.cs
-        fileNameWithoutPathPlusLineNumber: KcpTransport.cs:133
-        fileNamePretty: KcpTransport
+      - fileName: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
+        fileNameWithoutAssets: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
+        fileNameWithoutAssetsPlusLineNumber: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:328
+        fileNameWithoutPath: BurstAotCompiler.cs
+        fileNameWithoutPathPlusLineNumber: BurstAotCompiler.cs:328
+        fileNamePretty: BurstAotCompiler
         instanceID: -1
-        className: KcpTransport
-        methodName: Awake
-        namespaceName: kcp2k
-        lineNumberString: 133
+        className: BurstAotCompiler
+        methodName: OnPostBuildPlayerScriptDLLsImpl
+        namespaceName: Unity.Burst.Editor
+        lineNumberString: 328
         charNumber: 0
-        stackLabel: KcpTransport.Awake()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs:133'
+        stackLabel: BurstAotCompiler.OnPostBuildPlayerScriptDLLsImpl()
+        stackLabel2: ' at Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:328'
+        stackLabel1Content:
+          m_Text: 
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        stackLabel1Width: 0
+        stackLabel1Height: 0
+        stackLabel2Content:
+          m_Text: 
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        stackLabel2Width: 0
+        stackLabel2Height: 0
+        stackSourceLineHeight: 0
+        sourceCode: []
+        sourceCodeUpdated: 0
+        showSource: 1
+      - fileName: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
+        fileNameWithoutAssets: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs
+        fileNameWithoutAssetsPlusLineNumber: Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:186
+        fileNameWithoutPath: BurstAotCompiler.cs
+        fileNameWithoutPathPlusLineNumber: BurstAotCompiler.cs:186
+        fileNamePretty: BurstAotCompiler
+        instanceID: -1
+        className: BurstAotCompiler
+        methodName: OnPostBuildPlayerScriptDLLs
+        namespaceName: Unity.Burst.Editor
+        lineNumberString: 186
+        charNumber: 0
+        stackLabel: BurstAotCompiler.OnPostBuildPlayerScriptDLLs()
+        stackLabel2: ' at Library/PackageCache/com.unity.burst@1.6.0/Editor/BurstAotCompiler.cs:186'
+        stackLabel1Content:
+          m_Text: 
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        stackLabel1Width: 0
+        stackLabel1Height: 0
+        stackLabel2Content:
+          m_Text: 
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        stackLabel2Width: 0
+        stackLabel2Height: 0
+        stackSourceLineHeight: 0
+        sourceCode: []
+        sourceCodeUpdated: 0
+        showSource: 1
+      - fileName: None
+        fileNameWithoutAssets: None
+        fileNameWithoutAssetsPlusLineNumber: None
+        fileNameWithoutPath: None
+        fileNameWithoutPathPlusLineNumber: None
+        fileNamePretty: None
+        instanceID: -1
+        className: EditorApplication
+        methodName: Internal_CallGlobalEventHandler
+        namespaceName: UnityEditor
+        lineNumberString: 0
+        charNumber: 0
+        stackLabel: EditorApplication.Internal_CallGlobalEventHandler()
+        stackLabel2: 
         stackLabel1Content:
           m_Text: 
           m_Image: {fileID: 0}
@@ -1971,12 +1482,12 @@ MonoBehaviour:
       ignoredStackEntries: []
       lastMatchedCount: 1
       belongsToFilters:
-      - name: Log
+      - name: Warning
         isEnabled: 1
         collapsed: 1
-        itemGUID: 9c65100e-e0a0-42ff-8af6-3cce749065df
+        itemGUID: c9635fda-0ebb-4667-832d-d138a448deeb
         filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
+        mainColor: {r: 1, g: 0.84, b: 0.02, a: 0.7}
         isStandardFilter: 1
         isTempFilter: 0
         filterOnly: 0
@@ -1993,7 +1504,7 @@ MonoBehaviour:
         collapseIconTexture: 0
         useIconBackground: 1
         useIconSymbol: 0
-        useIconLetter: 0
+        useIconLetter: 1
         useIconTexture: 0
         filterFormatVersion: 1
         iconColorize: 0
@@ -2003,7 +1514,7 @@ MonoBehaviour:
           - name: 
             isEnabled: 1
             collapsed: 0
-            itemGUID: de84628e-acee-4844-9071-b183d359f9ff
+            itemGUID: 2955ebb2-da1b-4d83-83c3-9d86bf6d9d84
             searchString: <Any>
             searchType: 1
             removeSearchStringFromLog: 0
@@ -2012,8 +1523,13 @@ MonoBehaviour:
               - name: 
                 isEnabled: 1
                 collapsed: 0
-                itemGUID: b3e251f0-28e0-47d2-90d2-e8cd6d5b49be
-                logType: 1
+                itemGUID: 845d336c-1cfd-41a4-a0d1-22e328bd633d
+                logType: 2
+              - name: 
+                isEnabled: 1
+                collapsed: 0
+                itemGUID: cde1b222-dae8-448b-a4a2-534591429793
+                logType: 5
               selectionList: 0
               collapsable: 1
               collapsed: 0
@@ -2022,7 +1538,7 @@ MonoBehaviour:
               - name: 
                 isEnabled: 1
                 collapsed: 0
-                itemGUID: bd0c3981-4c80-4177-a264-48749905d788
+                itemGUID: c30e9bbd-3f98-44a6-a1b0-fd144f9dcdd0
                 columnType: 1
               selectionList: 0
               collapsable: 1
@@ -2040,18 +1556,18 @@ MonoBehaviour:
           isEnabled: 1
           collapsed: 0
           itemGUID: 
-          iconType: 1
+          iconType: 3
           iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
+          iconText: '!'
+          useIconTextFirstLetter: 0
+          useIconLogColor: 0
           iconColor: {r: 1, g: 1, b: 1, a: 1}
           iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
           iconTextureGUID: 
           useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
+          iconOffset: {x: 0, y: 2}
           iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
+          iconSize: 7
         iconSymbol:
           name: 
           isEnabled: 1
@@ -2080,7 +1596,7 @@ MonoBehaviour:
           useIconTextFirstLetter: 1
           useIconLogColor: 1
           iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPLOGICON
+          iconBuiltInID: BACKGROUNDS_ECPBGTRIANGLE
           iconTextureGUID: 
           useIconShadow: 1
           iconOffset: {x: 0, y: 0}
@@ -2107,12 +1623,12 @@ MonoBehaviour:
         hideLabelInToolbar: 0
         hideWhenNoMatches: 0
       belongsToStandardFilters:
-      - name: Log
+      - name: Warning
         isEnabled: 1
         collapsed: 1
-        itemGUID: 9c65100e-e0a0-42ff-8af6-3cce749065df
+        itemGUID: c9635fda-0ebb-4667-832d-d138a448deeb
         filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
+        mainColor: {r: 1, g: 0.84, b: 0.02, a: 0.7}
         isStandardFilter: 1
         isTempFilter: 0
         filterOnly: 0
@@ -2129,7 +1645,7 @@ MonoBehaviour:
         collapseIconTexture: 0
         useIconBackground: 1
         useIconSymbol: 0
-        useIconLetter: 0
+        useIconLetter: 1
         useIconTexture: 0
         filterFormatVersion: 1
         iconColorize: 0
@@ -2139,7 +1655,7 @@ MonoBehaviour:
           - name: 
             isEnabled: 1
             collapsed: 0
-            itemGUID: de84628e-acee-4844-9071-b183d359f9ff
+            itemGUID: 2955ebb2-da1b-4d83-83c3-9d86bf6d9d84
             searchString: <Any>
             searchType: 1
             removeSearchStringFromLog: 0
@@ -2148,8 +1664,13 @@ MonoBehaviour:
               - name: 
                 isEnabled: 1
                 collapsed: 0
-                itemGUID: b3e251f0-28e0-47d2-90d2-e8cd6d5b49be
-                logType: 1
+                itemGUID: 845d336c-1cfd-41a4-a0d1-22e328bd633d
+                logType: 2
+              - name: 
+                isEnabled: 1
+                collapsed: 0
+                itemGUID: cde1b222-dae8-448b-a4a2-534591429793
+                logType: 5
               selectionList: 0
               collapsable: 1
               collapsed: 0
@@ -2158,7 +1679,7 @@ MonoBehaviour:
               - name: 
                 isEnabled: 1
                 collapsed: 0
-                itemGUID: bd0c3981-4c80-4177-a264-48749905d788
+                itemGUID: c30e9bbd-3f98-44a6-a1b0-fd144f9dcdd0
                 columnType: 1
               selectionList: 0
               collapsable: 1
@@ -2176,18 +1697,18 @@ MonoBehaviour:
           isEnabled: 1
           collapsed: 0
           itemGUID: 
-          iconType: 1
+          iconType: 3
           iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
+          iconText: '!'
+          useIconTextFirstLetter: 0
+          useIconLogColor: 0
           iconColor: {r: 1, g: 1, b: 1, a: 1}
           iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
           iconTextureGUID: 
           useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
+          iconOffset: {x: 0, y: 2}
           iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
+          iconSize: 7
         iconSymbol:
           name: 
           isEnabled: 1
@@ -2216,7 +1737,7 @@ MonoBehaviour:
           useIconTextFirstLetter: 1
           useIconLogColor: 1
           iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPLOGICON
+          iconBuiltInID: BACKGROUNDS_ECPBGTRIANGLE
           iconTextureGUID: 
           useIconShadow: 1
           iconOffset: {x: 0, y: 0}
@@ -2357,679 +1878,46 @@ MonoBehaviour:
       listIndex: 1
       nativeIndex: 1
       nativeIdentifier: 0
-      originalLog: Mirror | mirror-networking.com | discord.gg/N9QVxbM
-      originalStackTrace: 'Mirror | mirror-networking.com | discord.gg/N9QVxbM
+      originalLog: 'Build completed with a result of ''Succeeded'' in 13 seconds
+        (13021 ms)
 
-        UnityEngine.Debug:Log
-        (object)
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()'
+      originalStackTrace: 'Build completed with a result of ''Succeeded'' in 13 seconds
+        (13021 ms)
 
-        Mirror.NetworkManager:Awake () (at Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs:191)
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()
 
 '
-      nativeFileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
+      nativeFileName: 
       nativeFileNamePretty: 
-      nativeLineNumber: 191
+      nativeLineNumber: 0
       watchName: 
-      logText: Mirror | mirror-networking.com | discord.gg/N9QVxbM
-      logTruncatedText: Mirror | mirror-networking.com | discord.gg/N9QVxbM
+      logText: 'Build completed with a result of ''Succeeded'' in 13 seconds (13021
+        ms)
+
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()'
+      logTruncatedText: 'Build completed with a result of ''Succeeded'' in 13 seconds
+        (13021 ms)
+
+        UnityEditor.EditorApplication:Internal_CallGlobalEventHandler
+        ()'
       logColumnText: 
       fileName: 
       className: 
       namespaceName: 
-      lineCount: 1
+      lineCount: 2
       hasSourceCode: 0
-      timeStamp: 22:18:52.090
-      timeFrame: 6
-      timeStampDateTimeNow: 22:18:52.090
+      timeStamp: 21:15:29
+      timeFrame: -1
+      timeStampDateTimeNow: 
       instanceID: 0
       collapsedCount: 0
       cachedHeight: -1
       cachedHeightLogWidth: 0
-      stackEntries:
-      - fileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/NetworkManager.cs:191
-        fileNameWithoutPath: NetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: NetworkManager.cs:191
-        fileNamePretty: NetworkManager
-        instanceID: -1
-        className: NetworkManager
-        methodName: Awake
-        namespaceName: Mirror
-        lineNumberString: 191
-        charNumber: 0
-        stackLabel: NetworkManager.Awake()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/NetworkManager.cs:191'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      ignoredStackEntries: []
-      lastMatchedCount: 1
-      belongsToFilters:
-      - name: Log
-        isEnabled: 1
-        collapsed: 1
-        itemGUID: 9c65100e-e0a0-42ff-8af6-3cce749065df
-        filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
-        isStandardFilter: 1
-        isTempFilter: 0
-        filterOnly: 0
-        useAdvancedColors: 0
-        customTextColor: {r: 1, g: 1, b: 1, a: 1}
-        customBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
-        swallowStandard: 1
-        standardCanSwallow: 0
-        overrideStandardColors: 1
-        overrideStandardIcon: 1
-        collapseIconBackground: 0
-        collapseIconSymbol: 0
-        collapseIconLetter: 0
-        collapseIconTexture: 0
-        useIconBackground: 1
-        useIconSymbol: 0
-        useIconLetter: 0
-        useIconTexture: 0
-        filterFormatVersion: 1
-        iconColorize: 0
-        useAndOpForSearchList: 0
-        searchList:
-          list:
-          - name: 
-            isEnabled: 1
-            collapsed: 0
-            itemGUID: de84628e-acee-4844-9071-b183d359f9ff
-            searchString: <Any>
-            searchType: 1
-            removeSearchStringFromLog: 0
-            logTypeList:
-              list:
-              - name: 
-                isEnabled: 1
-                collapsed: 0
-                itemGUID: b3e251f0-28e0-47d2-90d2-e8cd6d5b49be
-                logType: 1
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-            columnTypeList:
-              list:
-              - name: 
-                isEnabled: 1
-                collapsed: 0
-                itemGUID: bd0c3981-4c80-4177-a264-48749905d788
-                columnType: 1
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-            sourceCodeList:
-              list: []
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-          selectionList: 0
-          collapsable: 1
-          collapsed: 0
-        iconLetter:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconSymbol:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconBackground:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPLOGICON
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconTexture:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        showInToolbar: 1
-        hideLabelInToolbar: 0
-        hideWhenNoMatches: 0
-      belongsToStandardFilters:
-      - name: Log
-        isEnabled: 1
-        collapsed: 1
-        itemGUID: 9c65100e-e0a0-42ff-8af6-3cce749065df
-        filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
-        isStandardFilter: 1
-        isTempFilter: 0
-        filterOnly: 0
-        useAdvancedColors: 0
-        customTextColor: {r: 1, g: 1, b: 1, a: 1}
-        customBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
-        swallowStandard: 1
-        standardCanSwallow: 0
-        overrideStandardColors: 1
-        overrideStandardIcon: 1
-        collapseIconBackground: 0
-        collapseIconSymbol: 0
-        collapseIconLetter: 0
-        collapseIconTexture: 0
-        useIconBackground: 1
-        useIconSymbol: 0
-        useIconLetter: 0
-        useIconTexture: 0
-        filterFormatVersion: 1
-        iconColorize: 0
-        useAndOpForSearchList: 0
-        searchList:
-          list:
-          - name: 
-            isEnabled: 1
-            collapsed: 0
-            itemGUID: de84628e-acee-4844-9071-b183d359f9ff
-            searchString: <Any>
-            searchType: 1
-            removeSearchStringFromLog: 0
-            logTypeList:
-              list:
-              - name: 
-                isEnabled: 1
-                collapsed: 0
-                itemGUID: b3e251f0-28e0-47d2-90d2-e8cd6d5b49be
-                logType: 1
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-            columnTypeList:
-              list:
-              - name: 
-                isEnabled: 1
-                collapsed: 0
-                itemGUID: bd0c3981-4c80-4177-a264-48749905d788
-                columnType: 1
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-            sourceCodeList:
-              list: []
-              selectionList: 0
-              collapsable: 1
-              collapsed: 0
-          selectionList: 0
-          collapsable: 1
-          collapsed: 0
-        iconLetter:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconSymbol:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconBackground:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPLOGICON
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconTexture:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        showInToolbar: 1
-        hideLabelInToolbar: 0
-        hideWhenNoMatches: 0
-      assignedTempFilter:
-        name: 
-        isEnabled: 1
-        collapsed: 0
-        itemGUID: 
-        filterName: 
-        mainColor: {r: 1, g: 1, b: 1, a: 1}
-        isStandardFilter: 0
-        isTempFilter: 0
-        filterOnly: 0
-        useAdvancedColors: 0
-        customTextColor: {r: 1, g: 1, b: 1, a: 1}
-        customBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
-        swallowStandard: 1
-        standardCanSwallow: 0
-        overrideStandardColors: 1
-        overrideStandardIcon: 1
-        collapseIconBackground: 0
-        collapseIconSymbol: 0
-        collapseIconLetter: 0
-        collapseIconTexture: 0
-        useIconBackground: 1
-        useIconSymbol: 0
-        useIconLetter: 0
-        useIconTexture: 0
-        filterFormatVersion: -1
-        iconColorize: 0
-        useAndOpForSearchList: 0
-        searchList:
-          list: []
-          selectionList: 0
-          collapsable: 1
-          collapsed: 0
-        iconLetter:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconSymbol:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconBackground:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        iconTexture:
-          name: 
-          isEnabled: 1
-          collapsed: 0
-          itemGUID: 
-          iconType: 1
-          iconType2: 1
-          iconText: A
-          useIconTextFirstLetter: 1
-          useIconLogColor: 1
-          iconColor: {r: 1, g: 1, b: 1, a: 1}
-          iconBuiltInID: BACKGROUNDS_ECPBGROUNDEDSQUARE
-          iconTextureGUID: 
-          useIconShadow: 1
-          iconOffset: {x: 0, y: 0}
-          iconShadowOffset: {x: 0.5, y: 0.5}
-          iconSize: 13
-        showInToolbar: 1
-        hideLabelInToolbar: 0
-        hideWhenNoMatches: 0
-    - logType: 1
-      ignore: 0
-      processed: 1
-      tempFilterProcessed: 1
-      remoteEndPoint: Local
-      logPanelVisible: 1
-      logPanelIndex: 2
-      logOutputHeight: -1
-      listIndex: 2
-      nativeIndex: 2
-      nativeIdentifier: 0
-      originalLog: scene count 1
-      originalStackTrace: 'scene count 1
-
-        UnityEngine.MonoBehaviour:print
-        (object)
-
-        Chess.Core.Managers.ChessNetworkManager:OnStartClient ()
-        (at Assets/Scripts/Managers/ChessNetworkManager.cs:72)
-
-        Mirror.NetworkManager:StartHostClient
-        () (at Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs:507)
-
-        Mirror.NetworkManager:FinishStartHost
-        () (at Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs:486)
-
-        Mirror.NetworkManager:StartHost
-        () (at Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs:435)
-
-        Chess.Lobby.MainMenu:HostLobby
-        () (at Assets/Scripts/Lobby/MainMenu.cs:13)
-
-        UnityEngine.EventSystems.EventSystem:Update
-        () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:501)
-
-'
-      nativeFileName: Assets/Scripts/Managers/ChessNetworkManager.cs
-      nativeFileNamePretty: 
-      nativeLineNumber: 72
-      watchName: 
-      logText: scene count 1
-      logTruncatedText: scene count 1
-      logColumnText: 
-      fileName: 
-      className: 
-      namespaceName: 
-      lineCount: 1
-      hasSourceCode: 0
-      timeStamp: 22:18:56.940
-      timeFrame: 1719
-      timeStampDateTimeNow: 22:18:56.940
-      instanceID: 0
-      collapsedCount: 0
-      cachedHeight: -1
-      cachedHeightLogWidth: 0
-      stackEntries:
-      - fileName: Assets/Scripts/Managers/ChessNetworkManager.cs
-        fileNameWithoutAssets: Scripts/Managers/ChessNetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Scripts/Managers/ChessNetworkManager.cs:72
-        fileNameWithoutPath: ChessNetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: ChessNetworkManager.cs:72
-        fileNamePretty: ChessNetworkManager
-        instanceID: -1
-        className: ChessNetworkManager
-        methodName: OnStartClient
-        namespaceName: Chess.Core.Managers
-        lineNumberString: 72
-        charNumber: 0
-        stackLabel: ChessNetworkManager.OnStartClient()
-        stackLabel2: ' at /Scripts/Managers/ChessNetworkManager.cs:72'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/NetworkManager.cs:507
-        fileNameWithoutPath: NetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: NetworkManager.cs:507
-        fileNamePretty: NetworkManager
-        instanceID: -1
-        className: NetworkManager
-        methodName: StartHostClient
-        namespaceName: Mirror
-        lineNumberString: 507
-        charNumber: 0
-        stackLabel: NetworkManager.StartHostClient()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/NetworkManager.cs:507'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/NetworkManager.cs:486
-        fileNameWithoutPath: NetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: NetworkManager.cs:486
-        fileNamePretty: NetworkManager
-        instanceID: -1
-        className: NetworkManager
-        methodName: FinishStartHost
-        namespaceName: Mirror
-        lineNumberString: 486
-        charNumber: 0
-        stackLabel: NetworkManager.FinishStartHost()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/NetworkManager.cs:486'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Assets/Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssets: Asset Packs/Mirror/Runtime/NetworkManager.cs
-        fileNameWithoutAssetsPlusLineNumber: Asset Packs/Mirror/Runtime/NetworkManager.cs:435
-        fileNameWithoutPath: NetworkManager.cs
-        fileNameWithoutPathPlusLineNumber: NetworkManager.cs:435
-        fileNamePretty: NetworkManager
-        instanceID: -1
-        className: NetworkManager
-        methodName: StartHost
-        namespaceName: Mirror
-        lineNumberString: 435
-        charNumber: 0
-        stackLabel: NetworkManager.StartHost()
-        stackLabel2: ' at /Asset Packs/Mirror/Runtime/NetworkManager.cs:435'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Assets/Scripts/Lobby/MainMenu.cs
-        fileNameWithoutAssets: Scripts/Lobby/MainMenu.cs
-        fileNameWithoutAssetsPlusLineNumber: Scripts/Lobby/MainMenu.cs:13
-        fileNameWithoutPath: MainMenu.cs
-        fileNameWithoutPathPlusLineNumber: MainMenu.cs:13
-        fileNamePretty: MainMenu
-        instanceID: -1
-        className: MainMenu
-        methodName: HostLobby
-        namespaceName: Chess.Lobby
-        lineNumberString: 13
-        charNumber: 0
-        stackLabel: MainMenu.HostLobby()
-        stackLabel2: ' at /Scripts/Lobby/MainMenu.cs:13'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
-      - fileName: Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs
-        fileNameWithoutAssets: Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs
-        fileNameWithoutAssetsPlusLineNumber: Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:501
-        fileNameWithoutPath: EventSystem.cs
-        fileNameWithoutPathPlusLineNumber: EventSystem.cs:501
-        fileNamePretty: EventSystem
-        instanceID: -1
-        className: EventSystem
-        methodName: Update
-        namespaceName: UnityEngine.EventSystems
-        lineNumberString: 501
-        charNumber: 0
-        stackLabel: EventSystem.Update()
-        stackLabel2: ' at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:501'
-        stackLabel1Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel1Width: 0
-        stackLabel1Height: 0
-        stackLabel2Content:
-          m_Text: 
-          m_Image: {fileID: 0}
-          m_Tooltip: 
-        stackLabel2Width: 0
-        stackLabel2Height: 0
-        stackSourceLineHeight: 0
-        sourceCode: []
-        sourceCodeUpdated: 0
-        showSource: 1
+      stackEntries: []
       ignoredStackEntries: []
       lastMatchedCount: 1
       belongsToFilters:
@@ -3428,10 +2316,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 919
-    width: 1920
-    height: 240
+    x: 8
+    y: 961
+    width: 1904
+    height: 190
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -3461,10 +2349,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 516}
-    m_SelectedIDs: ae730000
-    m_LastClickedID: 29614
-    m_ExpandedIDs: 000000001a7300001c7300001e73000020730000227300002473000026730000287300002a730000
+    scrollPos: {x: 0, y: 540}
+    m_SelectedIDs: 62870000
+    m_LastClickedID: 34658
+    m_ExpandedIDs: 00000000187400001a7400001c7400001e7400002074000022740000247400002674000028740000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -3492,7 +2380,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001a7300001c7300001e73000020730000227300002473000026730000287300002a730000
+    m_ExpandedIDs: 00000000187400001a7400001c7400001e7400002074000022740000247400002674000028740000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -3517,9 +2405,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 02740000
-    m_LastClickedInstanceID: 29698
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000000000000c720000a8340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -3570,8 +2458,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73
-    width: 315
-    height: 825
+    width: 313
+    height: 744
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -3579,9 +2467,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 42730000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 20fbffff
+      m_ExpandedIDs: bcf1feff8af2feffc4f5feffd8f5feff38fefeff06fffeff4002ffff5402ffff7279ffff407affff7a7dffff8e7dffff6ef4ffff3cf5ffff74f8ffff8cf8ffff20fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -3625,10 +2513,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 316
-    y: 73
-    width: 1295
-    height: 825
+    x: 320
+    y: 83
+    width: 1282
+    height: 857
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -3830,9 +2718,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 609.67834, y: 412.10422, z: 210.52116}
+    m_Target: {x: 323.5726, y: 239.07404, z: 9.336441}
     speed: 2
-    m_Value: {x: 609.67834, y: 412.10422, z: 210.52116}
+    m_Value: {x: 323.5726, y: 239.07404, z: 9.336441}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -3883,9 +2771,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 527.15424
+    m_Target: 266.1377
     speed: 2
-    m_Value: 527.15424
+    m_Value: 266.1377
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -3930,10 +2818,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 316
+    x: 314
     y: 73
-    width: 1295
-    height: 825
+    width: 1293
+    height: 744
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -3944,7 +2832,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1295, y: 804}
+  m_TargetSize: {x: 1293, y: 723}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -3959,10 +2847,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -647.5
-    m_HBaseRangeMax: 647.5
-    m_VBaseRangeMin: -402
-    m_VBaseRangeMax: 402
+    m_HBaseRangeMin: -646.5
+    m_HBaseRangeMax: 646.5
+    m_VBaseRangeMin: -361.5
+    m_VBaseRangeMax: 361.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -3971,7 +2859,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -3980,23 +2868,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1295
-      height: 804
+      width: 1293
+      height: 723
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 647.5, y: 402}
+    m_Translation: {x: 646.5, y: 361.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -647.5
-      y: -402
-      width: 1295
-      height: 804
+      x: -646.5
+      y: -361.5
+      width: 1293
+      height: 723
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1295, y: 825}
+  m_LastWindowPixelSize: {x: 1293, y: 744}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -4023,9 +2911,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 919
+    y: 838
     width: 1920
-    height: 240
+    height: 321
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default

@@ -18,7 +18,8 @@ namespace Chess.Combat {
         }
 
         public Vector3Int GetMovement() =>movement;
-        
+
+        public int GetActionPointCost() => (int)(Mathf.Sqrt(movement.x * movement.x + movement.z * movement.z) + 2 * movement.y);
 
         public bool ValidMovement(Tile currentTile, Tile toTile) {
             int distX = Mathf.Abs(toTile.GetGridPos().x - currentTile.GetGridPos().x);

@@ -1,53 +1,55 @@
 ﻿using Chess.Combat;
 using Chess.Core.Managers;
+using Chess.UI;
 using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Chess.Core {
     public class Player : NetworkBehaviour {
-        [SyncVar]
-        public int playerNum = -1;
-
         public PlayerPointer playerPointer;
+        [SyncVar]
         public PlayerType playerType;
+
+        [SyncVar]
+        public int MaxEquitmentPoints;
 
         public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
         public static event Action ClientOnInfoUpdated;
 
+        readonly SyncList<OnTile> squad = new SyncList<OnTile>();
         [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
         private bool isPartyOwner = false;
 
         [SyncVar(hook = nameof(ClientHandleDisplayNameUpdated))]
         private string displayName;
-        PlayerSquad playerSquad;
+        [SerializeField] PlayerSquad playerSquad;
 
         public string DisplayName => displayName;
 
         public bool IsPartyOwner => isPartyOwner;
 
         #region Server
-        /*      private void Start() {
-                  //GlobalPointers.matrix.SetPlayerPieces(SpawnSquadUnits(), playerType);
-              }*/
+              
 
         public override void OnStartServer() {
             DontDestroyOnLoad(gameObject);
         }
 
         [Server]
-        public List<OnTile> SpawnSquadUnits() {
-            List<OnTile> output = new List<OnTile>();
+        public void SpawnSquadUnits() {
 
             foreach (Unit unit in playerSquad.GetUnits()) {
                 var temp = Instantiate(unit.gameObject);
                 temp.GetComponent<Unit>().player = this;
                 NetworkServer.Spawn(temp, connectionToClient);
-                output.Add(temp.GetComponent<OnTile>());
+                squad.Add(temp.GetComponent<OnTile>());
+                print("spawn unit " + unit + " for player " + playerType);
+
             }
-            return output;
         }
 
         [Server]
@@ -64,14 +66,26 @@ namespace Chess.Core {
         #region Client
         private void Awake() {
             playerPointer = GetComponent<PlayerPointer>();
-           // GlobalPointers.Instance.AddPlayer(this);
+            //GlobalPointers.Instance.AddPlayer(this);
+        }
 
+        public void OnGameStart() {
+            GetComponent<InputManager>().enabled = true;
+            GetComponent<PlayerPointer>().enabled = true;
+
+           // GlobalPointers.matrix.SetPlayerPieces(SpawnSquadUnits(), playerType);
+        }
+
+        [TargetRpc]
+        public void RpcSetPlaceDisplay() {
+            print("squad length " + squad.Count);
+            GlobalPointers.UI_Manager.SetUI(UIType.setupManager, squad.ToList());
         }
 
         [Command]
         public void CmdStartGame() {
             if (!isPartyOwner) return;
-
+            
             (NetworkManager.singleton as ChessNetworkManager).StartGame();
         }
 

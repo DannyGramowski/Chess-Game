@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
-using System.Threading.Tasks;
 using Mirror;
+using Chess.UI;
 //using System;
 
 namespace Chess.Core {
@@ -30,7 +30,14 @@ namespace Chess.Core {
         public override void OnStartServer() {
             CreateMatrix();
             GenerateObstacles();
+            foreach(var player in GlobalPointers.chessNetworkManager.players) {
+                player.SpawnSquadUnits();
+                player.RpcSetPlaceDisplay();//prevents it being called twice
+            }
+            
         }
+
+        
 
         [Server]
         public void CreateMatrix() {
@@ -54,8 +61,9 @@ namespace Chess.Core {
             SetUpTiles();
         }
 
+
         [Server]
-        public void SetPlayerPieces(List<OnTile> units, PlayerType playerType) {
+        public void SetUpPlayerPieces(List<OnTile> units, PlayerType playerType) {
            // print("set player pieces");
          //  not setting pieces to different sides
             int min = 0;
@@ -144,7 +152,6 @@ namespace Chess.Core {
             }
         }
 
-            
         #endregion
 
         #region HelperFunctions

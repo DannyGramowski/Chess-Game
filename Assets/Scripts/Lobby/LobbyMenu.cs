@@ -40,8 +40,11 @@ public class LobbyMenu : MonoBehaviour
         startGameButton.gameObject.SetActive(state);
     }
 
+    [Client]
     public void StartGame() {
+        print("network client " + NetworkClient.connection.identity);
         NetworkClient.connection.identity.GetComponent<Player>().CmdStartGame();
+        startGameButton.interactable = false;
     }
 
     private void HandleClientConnected() {
@@ -58,5 +61,8 @@ public class LobbyMenu : MonoBehaviour
         }
     }
 
+    public void LogPress() {
+        print("button pressed");
+    }
  
 }

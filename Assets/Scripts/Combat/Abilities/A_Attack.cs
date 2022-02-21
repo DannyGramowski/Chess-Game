@@ -11,6 +11,7 @@ namespace Chess.Combat {
         private new void Start() {
             base.Start();
             actionPointCost = weapon.ActionPointCost;
+            equiptmentPointCost = weapon.EquitmentPointCost;
         }
 
         public override void ActivateAbility(IsSelectable additionalData) {
