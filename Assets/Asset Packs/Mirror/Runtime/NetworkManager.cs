@@ -752,7 +752,6 @@ namespace Mirror
         // the change and ready again to participate in the new scene.
         public virtual void ServerChangeScene(string newSceneName)
         {
-            print("server change scene");
             if (string.IsNullOrWhiteSpace(newSceneName))
             {
                 Debug.LogError("ServerChangeScene empty scene name");

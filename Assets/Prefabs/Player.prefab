@@ -95,4 +95,6 @@ MonoBehaviour:
   syncInterval: 0.1
   playerPointer: {fileID: 8886212982594182456}
   playerType: 0
+  MaxEquitmentPoints: 0
+  deathPerecentage: 0.9
   playerSquad: {fileID: 11400000, guid: 38d598b630f8f3d49b9fecba4c513624, type: 2}

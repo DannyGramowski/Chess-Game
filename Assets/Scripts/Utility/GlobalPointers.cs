@@ -27,6 +27,7 @@ namespace Chess.Core {
             matrix = _matrix;
             gameManager = GetComponent<GameManager>();
             chessNetworkManager = FindObjectOfType<ChessNetworkManager>();
+            playerType = GetPlayerType();
             foreach (var player in chessNetworkManager.players) {
                 player.OnGameStart();
             }

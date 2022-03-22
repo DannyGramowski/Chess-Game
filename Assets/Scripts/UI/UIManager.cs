@@ -72,6 +72,7 @@ namespace Chess.UI {
     public enum UIType {
         patternSelectionManager,
         abilityDisplayManager,
-        setupManager
+        setupManager,
+        none
     }
 }

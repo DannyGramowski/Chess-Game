@@ -25,7 +25,7 @@ public class PlaceUnitButton : MonoBehaviour {
         }
 
         private void OnPress() {
-            unit.gameObject.SetActive(true);
+           // unit.gameObject.SetActive(true);
             setupManager.StartPlaceUnit(unit);
         }
     }

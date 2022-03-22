@@ -19,12 +19,8 @@ namespace Chess.Core{
         #region Server
          //need to do SetPlayerPieces in start because NetworkIdentity is set after Awake
         public void Start() {
-            // print(connectionToServer.identity + " on server start ");
-            //  print("on server start, num players is " + (NetworkServer.connections.Count - 1));
             player = GetComponent<Player>();
             matrix = GlobalPointers.matrix;
-            //playerType = (PlayerType) player.playerNum;
-            //matrix.SetPlayerPieces(SpawnSquadUnits(), playerType);
         }
 
        
@@ -38,7 +34,6 @@ namespace Chess.Core{
             //patternSelectionManager.SetPlayerType(playerType);
             inputManager = _inputManager;
             //inputManager.SetPlayerType(playerType);
-            //disable then enable in game scene
             matrix = FindObjectOfType<Matrix>();
          }
         #endregion

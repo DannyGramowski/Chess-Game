@@ -1,4 +1,5 @@
 ﻿using Chess.Combat;
+using Chess.UI;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.InputSystem;
 namespace Chess.Core {
     public class A_PlaceUnit : Ability {
         Unit placingUnit;
+        
 
         private new void Start() {
             base.baseUnit = null;
@@ -16,8 +18,7 @@ namespace Chess.Core {
             if (placingUnit == null) return;
             if(!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit)) return;
             if (!hit.transform.TryGetComponent<Tile>(out Tile tile)) return;
-            if (!tile.IsEmpty()) return;
-                placingUnit.transform.position = tile.transform.position;
+            if(ValidSelection(tile.GetComponent<IsSelectable>())) placingUnit.transform.position = tile.transform.position;
                 
                   
         }
@@ -30,7 +31,7 @@ namespace Chess.Core {
 
         public override void ActivateAbility(IsSelectable additionalData) {
             print("move");
-            placingUnit.Move(additionalData.GetComponent<Tile>());
+            placingUnit.CmdMove(additionalData.GetComponent<Tile>());
             placingUnit = null;
         }
 
@@ -43,8 +44,11 @@ namespace Chess.Core {
 
         public override bool ValidSelection(IsSelectable data) {
             Tile tile = data.GetComponent<Tile>();
+            if (placingUnit == null || tile == null) return false;
 
-            return placingUnit != null && tile != null && tile.IsEmpty();
+
+
+            return tile.IsEmpty() && GlobalPointers.matrix.WithinSetUpArea(tile.GetGridPos());
         }
 
 

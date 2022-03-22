@@ -342,7 +342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerPointer: {fileID: 0}
+  player: {fileID: 0}
+  healthBar: {fileID: 1254505136480985850}
   movementPatterns:
   - {fileID: 11400000, guid: 95a595fde718248478e5e18171839427, type: 2}
   - {fileID: 11400000, guid: 9f82840473fd03e42aae6d2ad6efce9a, type: 2}
@@ -473,6 +474,11 @@ MonoBehaviour:
   bufferSizeLimit: 64
   catchupThreshold: 4
   catchupMultiplier: 0.1
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 5
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
@@ -491,6 +497,7 @@ MonoBehaviour:
   actionPointCost: 4
   abilityName: attack
   abilityImage: {fileID: 0}
+  equiptmentPointCost: 0
   weapon: {fileID: 11400000, guid: b3e0fc4c171d79a4a8be63c00625f29d, type: 2}
 --- !u!114 &5175898279011987471
 MonoBehaviour:
@@ -507,6 +514,7 @@ MonoBehaviour:
   actionPointCost: 2
   abilityName: move
   abilityImage: {fileID: 0}
+  equiptmentPointCost: 0
 --- !u!1 &5167510465443337129
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4593156681247109811
 Transform:
   m_ObjectHideFlags: 0
@@ -590,7 +598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 4151670781857579262}
-  unit: {fileID: 2452756976955882480}
 --- !u!1 &6084702274291341073
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,8 +631,8 @@ RectTransform:
   m_Father: {fileID: 145922860047867263}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.047999978, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -700,8 +707,8 @@ RectTransform:
   m_Father: {fileID: 8124618000666921012}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.047999978, y: 0}
+  m_AnchorMax: {x: 0.047999978, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

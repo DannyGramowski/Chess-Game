@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIs:
-  - {fileID: 1151668297}
+  - {fileID: 1907081903}
   - {fileID: 1398768828}
   - {fileID: 1442170115}
   turnText: {fileID: 1000968150}
@@ -1203,14 +1203,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1151668296}
   - component: {fileID: 1151668298}
-  - component: {fileID: 1151668297}
   m_Layer: 5
   m_Name: pattern buttons Layout Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1151668296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1235,23 +1234,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 330.2112, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1151668297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151668295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d702c3a68fdcddf4bba3bac5f7789fb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 1261259079}
-  - {fileID: 1844916863}
-  - {fileID: 1473900115}
-  - {fileID: 1769736355}
 --- !u!114 &1151668298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,7 +1517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: End Turn
+  m_text: Ready
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1673,10 +1655,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6981132, g: 0.09549664, b: 0.09549664, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 0.06661179, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.69803923, g: 0.09411763, b: 0.587131, a: 1}
+    m_PressedColor: {r: 0.035300493, g: 1, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 0.030588388, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2063,7 +2045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1442170114
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2100,6 +2082,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeUnitButton: {fileID: 2741761092941811093, guid: 4c999c70a76463449adc39a0520e9f21, type: 3}
   buttonParent: {fileID: 569820965}
+  useDefaultSpawnPositions: 1
+  buttons: []
+  units: []
 --- !u!114 &1442170116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2732,6 +2717,7 @@ GameObject:
   - component: {fileID: 1907081900}
   - component: {fileID: 1907081902}
   - component: {fileID: 1907081901}
+  - component: {fileID: 1907081903}
   m_Layer: 5
   m_Name: Pattern Button Panel
   m_TagString: Untagged
@@ -2746,7 +2732,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907081899}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2798,6 +2784,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907081899}
   m_CullTransparentMesh: 1
+--- !u!114 &1907081903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907081899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d702c3a68fdcddf4bba3bac5f7789fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 1261259079}
+  - {fileID: 1844916863}
+  - {fileID: 1473900115}
+  - {fileID: 1769736355}
 --- !u!1 &2107945385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,7 +2952,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: 2.8067511e+20}
+  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: 2.2e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

@@ -13,7 +13,7 @@ namespace Chess.Core.Managers {
 
         public static event Action ClientOnConnected;
         public static event Action ClientOnDisconnected;
-        public static event Action OnSceneChange;
+       // public static event Action OnSceneChange;
 
         private bool isGameInProgress = false;
 

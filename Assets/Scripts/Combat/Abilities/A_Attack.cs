@@ -37,21 +37,15 @@ namespace Chess.Combat {
             Vector3 targetPos = targetUnit.GetCurrentTile().GetGridPos();
             bool output = true;
             output &= Vector3.Distance(basePos, targetPos) < weapon.Range;
-            print("distance is valid: " + (Vector3.Distance(basePos, targetPos) < weapon.Range));
             Ray ray = new Ray(baseUnit.transform.position + new Vector3(0,0.2f,0), (targetUnit.transform.position - baseUnit.transform.position).normalized * 20);//added offset so raycast does not colide with floor
             displayRay = ray;
             debugRay = true;
             //Gizmos.DrawRay(ray);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit,50);
+            if (!Physics.Raycast(ray, out hit, 50)) return false;
             Unit unit;
             output &= hit.transform.TryGetComponent<Unit>(out unit);
-            print("hit " + hit.transform.name);
-            print("unit " + unit);
             output &= unit?.player.playerType != baseUnit.player.playerType;
-            print("base unit pointer " + baseUnit.player);
-            print("target unit pointer " + targetUnit.player);
-            print("opposite player types " + (unit?.player.playerType != baseUnit.player.playerType));
             return output;
         }
 
@@ -59,9 +53,7 @@ namespace Chess.Combat {
             if (debugRay) {
                 Gizmos.color = Color.red;
                 Gizmos.DrawRay(displayRay);
-                
             }
-            
         }
 
         public override Type GetAdditionSelectionType() => typeof(Unit);

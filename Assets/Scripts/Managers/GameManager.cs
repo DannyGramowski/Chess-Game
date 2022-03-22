@@ -9,17 +9,23 @@ namespace Chess.Core {
     public class GameManager : NetworkBehaviour {
         public static event Action OnFinishSetup;
 
-       [SyncVar]public int playerTurn = 0; //the player number whose turn it is
+        [SyncVar] public int playerTurn = 0; //the player number whose turn it is
         [SyncVar] public GamePhase gamePhase = GamePhase.Setup;
         public bool isTurn => playerTurn == (int)GlobalPointers.playerType;
 
         bool[] EndSetupFlags = new bool[2];//index 0 for player 1, index 1 for player 2;
         #region Server
-       
+
         [ClientRpc]
         public void RpcSetTurnText(int playerTurn) {
-         //   print("rpc set text");
+            //   print("rpc set text");
             GlobalPointers.UI_Manager.SetTurnText(playerTurn);
+        }
+
+        [Server]
+        public void EndGame(PlayerType winner) {
+            print("end game " + winner + " is the winner");
+            RpcSetWinner(winner);
         }
 
         [Server]
@@ -28,8 +34,7 @@ namespace Chess.Core {
             if (!(EndSetupFlags[0] & EndSetupFlags[1] == true)) return;
 
             gamePhase = GamePhase.Player1Turn;
-            OnFinishSetup?.Invoke();
-            GlobalPointers.UI_Manager.SetUI(UIType.abilityDisplayManager, null);
+            RpcEndSetup();
         }
         #endregion
 
@@ -38,7 +43,7 @@ namespace Chess.Core {
         public void CmdEndTurn(PlayerType playerType) {
             if (playerTurn != (int)playerType) return;
             playerTurn = (playerTurn + 1) % 2;
-           // isTurn = !isTurn;
+            // isTurn = !isTurn;
             RpcSetTurnText(playerTurn);
         }
 
@@ -49,24 +54,27 @@ namespace Chess.Core {
             EndSetupPhase();
         }
 
+        [ClientRpc]
+        private void RpcSetWinner(PlayerType playerType) {
+            string text = playerType == GlobalPointers.GetPlayerType() ? "you won" : "you lost";
+            GlobalPointers.UI_Manager.SetTurnText(text);
+        }
+
+        [ClientRpc]
+        private void RpcEndSetup() {
+            print("rpc end setup");
+            OnFinishSetup?.Invoke();
+            GlobalPointers.UI_Manager.SetUI(UIType.none, null);
+        }
+
         public void EndTurn() {
-        //    print("game manager end turn");
-           
+            //    print("game manager end turn");
+
             CmdEndTurn(GlobalPointers.playerType);
-           
+
         }
 
-        private void Start() {
-            SetInitialTurn();
-        }
-
-        void SetInitialTurn() {
-           // GlobalPointers.UI_Manager.SetTurnText(playerTurn);
-            //isTurn = (int)GlobalPointers.playerType == playerTurn;
-        }
-        
         #endregion
-
     }
 
     public enum GamePhase {

@@ -20,7 +20,12 @@ namespace Chess.Core {
         public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
         public static event Action ClientOnInfoUpdated;
 
-        readonly SyncList<OnTile> squad = new SyncList<OnTile>();
+        public readonly SyncList<Guid> squadGuids = new SyncList<Guid>();//need to store guids of network identitys to sync b/c unit is a network behaviour and mirror is stupid
+
+        [SerializeField] [Range(0, 1)] float deathPerecentage;//perecentage of points lost for game to end
+
+        private List<Unit> squad = new List<Unit>();
+
         [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
         private bool isPartyOwner = false;
 
@@ -41,16 +46,36 @@ namespace Chess.Core {
 
         [Server]
         public void SpawnSquadUnits() {
-
+            print("spawn squad units");
             foreach (Unit unit in playerSquad.GetUnits()) {
                 var temp = Instantiate(unit.gameObject);
                 temp.GetComponent<Unit>().player = this;
                 NetworkServer.Spawn(temp, connectionToClient);
-                squad.Add(temp.GetComponent<OnTile>());
-                print("spawn unit " + unit + " for player " + playerType);
+                squadGuids.Add(temp.GetComponent<NetworkIdentity>().assetId);
 
             }
+            MaxEquitmentPoints = GetSquadEquitmentCost();
+            Debug.Assert(squadGuids.Count != 0);
         }
+
+       [Server]
+       public void CheckIfLost() {
+            print("check if lost");
+            print("curr equiptment points " + GetSquadEquitmentCost() + " max equitpment points " + MaxEquitmentPoints);
+            if(GetSquadEquitmentCost() <= MaxEquitmentPoints * deathPerecentage) {
+
+                PlayerType winner = playerType == PlayerType.player1 ? PlayerType.player2 : PlayerType.player1;//sets winner to other playertype 
+                
+                GlobalPointers.gameManager.EndGame(winner);
+            }
+        }
+
+        [Server] 
+        public void UnitDeathCleanup(Unit unit) {
+            squadGuids.Remove(unit.GetComponent<NetworkIdentity>().assetId);
+
+        }
+
 
         [Server]
         public void SetPartyOwner(bool state) {
@@ -69,17 +94,43 @@ namespace Chess.Core {
             //GlobalPointers.Instance.AddPlayer(this);
         }
 
+        private void Update() {
+            if(setPlaceDisplay == 1 && squadGuids.Count != 0) {
+                RpcSetPlaceDisplay();
+                setPlaceDisplay = 2;
+            }
+        }
+
+        public void ClientUnitDeathCleanup(Unit unit) {
+            squad.Remove(unit);
+        }
+
         public void OnGameStart() {
             GetComponent<InputManager>().enabled = true;
             GetComponent<PlayerPointer>().enabled = true;
-
-           // GlobalPointers.matrix.SetPlayerPieces(SpawnSquadUnits(), playerType);
+            setPlaceDisplay = 1;
+            // GlobalPointers.matrix.SetPlayerPieces(SpawnSquadUnits(), playerType);
         }
 
-        [TargetRpc]
+        int setPlaceDisplay = 0;//0 before game start, 1 after game start, 2 after setPlaceDisplay is called
+       // [ClientRpc]
         public void RpcSetPlaceDisplay() {
-            print("squad length " + squad.Count);
-            GlobalPointers.UI_Manager.SetUI(UIType.setupManager, squad.ToList());
+            if (playerType != GlobalPointers.GetPlayerType()) {
+                return;//only calls method 
+            }
+
+            List<OnTile> dataSquad = new List<OnTile>();
+            var units = FindObjectsOfType<Unit>();
+            foreach(var unit in units) {
+                var unitId = unit.GetComponent<NetworkIdentity>();
+                int index = squadGuids.IndexOf(unitId.assetId);
+                if(index >= 0 && unit.player.playerType == GlobalPointers.GetPlayerType()) {
+                    dataSquad.Add(unitId.GetComponent<OnTile>());
+                    squad.Add(unit);
+                }
+            }
+             
+            GlobalPointers.UI_Manager.SetUI(UIType.setupManager, dataSquad);
         }
 
         [Command]
@@ -112,6 +163,13 @@ namespace Chess.Core {
         private void ClientHandleDisplayNameUpdated(string oldName, string newName) {
             ClientOnInfoUpdated?.Invoke();
         }
+
+        private int GetSquadEquitmentCost() {
+            int output = 0;
+            foreach (var unit in squad) output += unit.GetUnitEquiptmentPoints();
+            return output;
+        }
+
         #endregion
     }
 }

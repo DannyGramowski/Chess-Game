@@ -12,6 +12,7 @@ namespace Chess.Combat {
         [SyncVar] public Player player;
         public float HealthPercentage => currHealth / maxHealth;
 
+        [SerializeField] HealthBar healthBar;
         [SerializeField] MovementPattern[] movementPatterns;
         [SerializeField] List<Ability> abilities; //movement and attacking will be considered abilities
         [SerializeField] int maxActionPoints;
@@ -41,7 +42,10 @@ namespace Chess.Combat {
         public void TakeDamage(float damage) {
             print(name + " took " + damage + " damage");
             currHealth -= damage;
+            RpcSetHealth();
+
             if (currHealth <= 0) {
+                print(name + " died");
                 Die();
             }
         }
@@ -49,13 +53,14 @@ namespace Chess.Combat {
         [Server]
         private void Die() {
             RpcUnitDeathCleanup();
+            var player = GlobalPointers.chessNetworkManager.GetPlayer(playerType);
+            player.UnitDeathCleanup(this);
+            player.CheckIfLost();
             NetworkServer.Destroy(gameObject);
         }
 
         [Server]
-        public int GetUnitEquiptmentPoints() {
-            return abilities.Sum(ability => ability.EquiptmentPointCost);
-        } 
+        public int GetUnitEquiptmentPoints() => abilities.Sum(ability => ability.EquiptmentPointCost);
 
         #endregion
 
@@ -73,15 +78,28 @@ namespace Chess.Combat {
             currActionPoints = maxActionPoints;
             currHealth = maxHealth;
             GetComponent<Collider>().enabled = false;
+            foreach (var meshes in GetComponentsInChildren<MeshRenderer>()) meshes.enabled = false;
             GameManager.OnFinishSetup += FinishSetup;
-            if (GetAbility<AMove>() == null) Debug.LogError("no move ability on " + name);
-            if (GetAbility<A_Attack>() == null) Debug.LogError("no attack ability on " + name);
-            //     not able to move units and units are able to be spawned on top of each other. I think that OnTile is not getting set.
+            Debug.Assert(GetAbility<A_Attack>() != null, "no attack ability on " + name);
+            Debug.Assert(GetAbility<AMove>() != null, "no move ability on " + name);
+        }
+
+        private void OnDestroy() {
+            if (GlobalPointers.chessNetworkManager == null) return;
+            GlobalPointers.chessNetworkManager.GetPlayer(playerType).ClientUnitDeathCleanup(this);
         }
 
         [ClientRpc]
         public void RpcUnitDeathCleanup() {
             GameManager.OnFinishSetup -= FinishSetup;
+
+        }
+
+        [ClientRpc]
+        private void RpcSetHealth() {
+            if(!healthBar.isActiveAndEnabled) healthBar.gameObject.SetActive(true);
+
+            healthBar.SetHealth(HealthPercentage);
         }
 
         [Command]
@@ -144,6 +162,8 @@ namespace Chess.Combat {
 
         private void FinishSetup() {
             GetComponent<Collider>().enabled = true;
+            if(!hasAuthority)foreach (var meshes in GetComponentsInChildren<MeshRenderer>()) meshes.enabled = true;//units with authority are turned on in setup manager
+
         }
     }
 }

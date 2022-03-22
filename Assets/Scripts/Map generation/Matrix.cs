@@ -32,7 +32,7 @@ namespace Chess.Core {
             GenerateObstacles();
             foreach(var player in GlobalPointers.chessNetworkManager.players) {
                 player.SpawnSquadUnits();
-                player.RpcSetPlaceDisplay();//prevents it being called twice
+               // player.RpcSetPlaceDisplay();
             }
             
         }
@@ -107,6 +107,7 @@ namespace Chess.Core {
                 SetUpTiles();
                 SetUpObstacles();
             }
+            GameManager.OnFinishSetup += ClearValidSetupColor;
         }
 
         public void SetUpTiles() {
@@ -131,7 +132,7 @@ namespace Chess.Core {
             foreach (var tile in tiles) {
                 Vector3Int gridPos = tile.GetGridPos();
                  tile.name = "tile " + gridPos.ToString();
-                tile.GetComponentInChildren<MeshRenderer>().material.color = GetColor(gridPos);
+                tile.GetComponentInChildren<MeshRenderer>().material.color = WithinSetUpArea(gridPos)? Color.green : GetColor(gridPos);
                     tile.transform.parent = xParents[parentIndex];
                     tileMatrix[gridPos.x, gridPos.y, gridPos.z] = tile;
                     zCapacity++;
@@ -142,6 +143,17 @@ namespace Chess.Core {
                 }
             }
         
+        public void ClearValidSetupColor() {
+            int xStart = GlobalPointers.playerType == PlayerType.player1 ? 0 : matrixSize.x - areaWithoutObstacles;
+            for(int x = xStart; x < xStart+ areaWithoutObstacles; x++) {
+                for(int y = 0; y < matrixSize.y; y++) {
+                    for(int z = 0; z < matrixSize.z; z++) {
+                        tileMatrix[x, y, z].ResetColor();
+                    }
+                }
+            }
+        }
+
         public void SetUpObstacles() {
             var obstacles = FindObjectsOfType<Obstacle>();
             Transform obstacleParent = Instantiate(parentPrefab, transform);
@@ -163,6 +175,14 @@ namespace Chess.Core {
             return GetTile(pos.x, pos.y, pos.z);
         }
 
+        public bool WithinSetUpArea(Vector3Int pos) {
+            if (GlobalPointers.playerType == PlayerType.player1) {
+                return pos.x < GlobalPointers.matrix.GetAreaWithoutObstacles();
+            } else {
+                return pos.x >= GlobalPointers.matrix.GetMatrixSize().x - GlobalPointers.matrix.GetAreaWithoutObstacles();
+            }
+        }
+
         public Tile GetTile(int x, int y, int z) {
             return tileMatrix[x, y, z];
         }
@@ -171,6 +191,7 @@ namespace Chess.Core {
             return new Vector3Int(tileMatrix.GetLength(0), tileMatrix.GetLength(1), tileMatrix.GetLength(2));
         }
 
+        public int GetAreaWithoutObstacles() => areaWithoutObstacles;
         private IEnumerable<Vector3Int> GenerateObstaclePositions() {
         //    print("generate obstacle positions");
             Dictionary<int, Vector3Int> positions = new Dictionary<int, Vector3Int>();

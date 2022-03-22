@@ -15,6 +15,10 @@ namespace Chess.UI {
         Unit currUnit;
 
         public void UpdateAPDisplay() {
+            if(currUnit == null) {
+                apLeftText.text = "";
+                return;
+            }
             apLeftText.text = currUnit.currActionPoints.ToString();
         }
 

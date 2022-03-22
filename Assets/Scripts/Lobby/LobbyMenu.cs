@@ -42,7 +42,6 @@ public class LobbyMenu : MonoBehaviour
 
     [Client]
     public void StartGame() {
-        print("network client " + NetworkClient.connection.identity);
         NetworkClient.connection.identity.GetComponent<Player>().CmdStartGame();
         startGameButton.interactable = false;
     }
