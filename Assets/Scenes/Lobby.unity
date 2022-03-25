@@ -1652,27 +1652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!1 &340416928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,7 +1677,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340416928}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1709,13 +1688,14 @@ RectTransform:
   - {fileID: 1024046119}
   - {fileID: 1679633031}
   - {fileID: 1985983912}
+  - {fileID: 1704661034}
   m_Father: {fileID: 308121709}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 3.2987976}
-  m_SizeDelta: {x: 13.1956, y: 6.5977}
+  m_SizeDelta: {x: 13.19574, y: 6.5976257}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340416930
 MonoBehaviour:
@@ -2343,14 +2323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &565873499
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,7 +3165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &893046231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5234,7 +5206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1523631919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5881,6 +5853,66 @@ MonoBehaviour:
   musicMuteToggle: {fileID: 2135757331}
   sfxVolumeSlider: {fileID: 858151022}
   sfxMuteToggle: {fileID: 664611413}
+--- !u!1 &1704661033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704661034}
+  - component: {fileID: 1704661035}
+  m_Layer: 5
+  m_Name: Squad Editor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1704661034
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704661033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 340416929}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1704661035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704661033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd03dc93f36790e4fb5a9a314c3e9a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyText: {fileID: 1523631920}
+  movementPatterns:
+  - {fileID: 11400000, guid: ceced541c1e93a041bbf73910b2323c0, type: 2}
+  - {fileID: 11400000, guid: 26cea8e69fcfbad4698a0e4c158e63f6, type: 2}
+  - {fileID: 11400000, guid: 95a595fde718248478e5e18171839427, type: 2}
+  - {fileID: 11400000, guid: 9f82840473fd03e42aae6d2ad6efce9a, type: 2}
+  abilities:
+  - {fileID: 4844469880761397457, guid: 544fc9a42a105c140aaef6f45a10ff8e, type: 3}
+  - {fileID: 6932882348268731573, guid: 4d54d718564b81543b3fb946aeee5e28, type: 3}
+  weapons:
+  - {fileID: 11400000, guid: b3e0fc4c171d79a4a8be63c00625f29d, type: 2}
 --- !u!1 &1796513381
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,38 +2,30 @@
 using System;
 using System.Collections.Generic;
 
-namespace SaveSystem
-{
-    public class SaveUtility : SaveScript
-    {
+namespace SaveSystem {
+    public class SaveUtility : SaveScript {
         private SaveScript saveScript;
 
         private SaveLocation location;
         #region PROPERTY Location { get; set; }
-        public SaveLocation Location
-        {
+        public SaveLocation Location {
             get { return location; }
-            set
-            {
+            set {
                 if (value == null)
                     throw new ArgumentNullException();
                 location = value;
-                try
-                {
+                try {
                     saveScript = GetSaveScript();
-                }
-                catch { throw; }
+                } catch { throw; }
             }
         }
         #endregion
 
         private SerializerSettings settings;
         #region PROPERTY Settings { get; set; }
-        public SerializerSettings Settings
-        {
+        public SerializerSettings Settings {
             get { return settings; }
-            set
-            {
+            set {
                 if (value == null)
                     throw new ArgumentNullException();
                 settings = value;
@@ -43,105 +35,80 @@ namespace SaveSystem
         #endregion
 
         #region CONSTRUCTOR
-        public SaveUtility(SaveLocation location)
-        {
+        public SaveUtility(SaveLocation location) {
             if (location == null)
                 throw new ArgumentNullException("location");
             this.location = location;
             this.settings = SerializerSettings.Default;
-            try
-            {
+            try {
                 saveScript = GetSaveScript();
-            }
-            catch { throw; }
+            } catch { throw; }
         }
-        public SaveUtility(SaveLocation location, SerializerSettings settings)
-        {
+        public SaveUtility(SaveLocation location, SerializerSettings settings) {
             if (location == null)
                 throw new ArgumentNullException("location");
             if (settings == null)
                 throw new ArgumentNullException("options");
             this.location = location;
             this.settings = settings;
-            try
-            {
+            try {
                 saveScript = GetSaveScript();
-            }
-            catch { throw; }
+            } catch { throw; }
         }
         #endregion
 
         #region REGION SaveScript implementation
         #region METHOD SaveInternal
-        protected override void SaveInternal<T>(string key, T value)
-        {
-            try
-            {
+        protected override void SaveInternal<T>(string key, T value) {
+            try {
                 saveScript.Save(key, value);
-            }
-            catch { throw; }
+            } catch { throw; }
         }
         #endregion
 
         #region METHOD LoadInternal
-        protected override T LoadInternal<T>(string key)
-        {
-            try
-            {
+        protected override T LoadInternal<T>(string key) {
+            try {
                 return saveScript.Load<T>(key);
-            }
-            catch { throw; }
+            } catch { throw; }
         }
         #endregion
 
         #region METHOD LoadIntoInternal
-        protected override void LoadIntoInternal<T>(string key, T obj)
-        {
-            try
-            {
+        protected override void LoadIntoInternal<T>(string key, T obj) {
+            try {
                 saveScript.LoadInto(key, obj);
-            }
-            catch { throw; }
+            } catch { throw; }
         }
         #endregion
 
         #region METHOD HasKeyInternal
-        protected override bool HasKeyInternal(string key)
-        {
-            try
-            {
+        protected override bool HasKeyInternal(string key) {
+            try {
                 return saveScript.HasKey(key);
-            }
-            catch { throw; }
+            } catch { throw; }
         }
         #endregion
 
         #region METHOD DeleteKeyInternal
-        protected override void DeleteKeyInternal(string key)
-        {
-            try
-            {
+        protected override void DeleteKeyInternal(string key) {
+            try {
                 saveScript.DeleteKey(key);
-            }
-            catch { throw; }
+            } catch { throw; }
         }
         #endregion
 
         #region METHOD GetKeys
-        public override List<string> GetKeys()
-        {
-            try
-            {
+        public override List<string> GetKeys() {
+            try {
                 return saveScript.GetKeys();
-            }
-            catch { throw; }
+            } catch { throw; }
         }
         #endregion
         #endregion
 
         #region PRIVATE METHOD GetSaveScript
-        private SaveScript GetSaveScript()
-        {
+        private SaveScript GetSaveScript() {
             if (location is PlayerPrefsLocation)
                 return new PlayerPrefsSave(settings);
             if (location is FileLocation)

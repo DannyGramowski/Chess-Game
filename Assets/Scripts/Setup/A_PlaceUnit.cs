@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 namespace Chess.Core {
     public class A_PlaceUnit : Ability {
         Unit placingUnit;
-        
 
         private new void Start() {
             base.baseUnit = null;

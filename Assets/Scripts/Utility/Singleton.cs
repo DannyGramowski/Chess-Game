@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Chess.Core {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
         private static T instance;
         public static T Instance {
@@ -28,6 +27,3 @@ namespace Chess.Core {
             }
         }
     }
-
-   
-}

@@ -9,7 +9,7 @@ namespace Chess.Combat {
         public string AbilityName => abilityName;
         public Sprite AbilityImage => abilityImage;
         public int EquiptmentPointCost => equiptmentPointCost;
-        
+
         [SerializeField] protected int actionPointCost;
         [SerializeField] protected string abilityName;
         [SerializeField] protected Sprite abilityImage;

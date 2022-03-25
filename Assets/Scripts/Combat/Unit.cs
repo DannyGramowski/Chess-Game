@@ -6,17 +6,18 @@ using Chess.Core;
 using Chess.UI;
 using Mirror;
 using System;
+using Chess.Saving;
 
 namespace Chess.Combat {
-    public class Unit : NetworkBehaviour {
+    public class Unit : NetworkBehaviour, ISaveable {
         [SyncVar] public Player player;
         public float HealthPercentage => currHealth / maxHealth;
 
         [SerializeField] HealthBar healthBar;
-        [SerializeField] MovementPattern[] movementPatterns;
-        [SerializeField] List<Ability> abilities; //movement and attacking will be considered abilities
-        [SerializeField] int maxActionPoints;
-        [SerializeField] float maxHealth;
+        [SerializeField] MovementPattern[] movementPatterns;//
+        [SerializeField] List<Ability> abilities; //movement and attacking will be considered abilities //
+        [SerializeField] int maxActionPoints;//
+        [SerializeField] float maxHealth;//
 
         [SyncVar] public int currActionPoints;
         [SyncVar] public float currHealth;
@@ -164,6 +165,18 @@ namespace Chess.Combat {
             GetComponent<Collider>().enabled = true;
             if(!hasAuthority)foreach (var meshes in GetComponentsInChildren<MeshRenderer>()) meshes.enabled = true;//units with authority are turned on in setup manager
 
+        }
+
+        public object CaptureState() {
+            int[] movementPatterns = new int[8];
+            List<int> abilities = new List<int>();
+            int extraAP;
+            int extraHealth; 
+
+            return null;
+        }
+
+        public void RestoreState(object state) {
         }
     }
 }
